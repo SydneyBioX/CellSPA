@@ -1,0 +1,316 @@
+---
+title: "An introduction to CellSPA"
+author:
+- name: Yingxin Lin
+  affiliation: School of Mathematics and Statistics, The University of Sydney, Australia
+output:
+  BiocStyle::html_document:
+    toc_float: true
+package: BiocStyle
+vignette: >
+  %\VignetteIndexEntry{CellSPA}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(
+    message=FALSE,
+    warning=FALSE,
+    collapse=TRUE,
+    comment="#>"
+)
+library(BiocStyle)
+```
+
+
+
+
+```{r}
+library(CellSPA)
+library(ggplot2)
+library(ggthemes)
+library(scater)
+library(SingleCellExperiment)
+library(SpatialExperiment)
+theme_set(theme_bw())
+```
+
+
+# Read BIDCell output
+
+```{r}
+data_dir = "data/BIDCell_csv_output/"
+tiff_path = "data/epoch_1_step_4000_connected_v3.tif"
+spe <- readBIDCell(data_dir,
+                   tiff_path = tiff_path,
+                   method_name = "BIDCell")
+```
+
+
+```{r}
+spe <- processingSPE(spe,
+                     qc_range = list(total_transciprts = c(20, 2000),
+                                     total_genes = c(20, Inf)))
+
+```
+
+
+```{r}
+# subset a set of cells for illustration
+spe <- CellSPA::subset(spe, 1:500)
+spe
+```
+
+
+# Baseline metrics
+
+
+```{r}
+spe <- generatePolygon(spe)
+spe <- calBaselineAllMetrics(spe, verbose = TRUE)
+head(rowData(spe))
+head(colData(spe))
+```
+
+
+
+# Expression similarity
+
+## Processing reference
+
+```{r}
+sce_ref_full <- readRDS("data/sce_FFPE_full.rds")
+sce_ref <- processingRef(sce_ref_full, 
+                         celltype = sce_ref_full$graph_cluster_anno, 
+                         subset_row = rownames(spe))
+sce_ref
+```
+
+
+## Calculating expression similarity 
+
+```{r}
+spe <- calExpressionCorrelation(spe, 
+                                sce_ref,
+                                ref_celltype = sce_ref$celltype,
+                                method = c("pearson", "cosine"),
+                                spe_exprs_values = "logcounts",
+                                ref_exprs_values = "mean")
+head(colData(spe))
+```
+
+```{r}
+spe <- calExpressionCorrelation(spe, 
+                                sce_ref,
+                                ref_celltype = sce_ref$celltype,
+                                method = c("pearson", "cosine"),
+                                spe_exprs_values = "logcounts",
+                                ref_exprs_values = "prop_detected")
+head(colData(spe))
+```
+
+```{r}
+spe <- calAggExpressionCorrelation(spe,
+                                   celltype = "mean_celltype_correlation",
+                                   sce_ref = sce_ref,
+                                   ref_celltype = "celltype",
+                                   method = c("pearson"),
+                                   spe_exprs_values = "logcounts",
+                                   ref_exprs_values = "mean")
+diag(spe@metadata$CellSPA$similarity_metrics$agg_mean_correlation)
+```
+```{r}
+spe <- calAggExpressionCorrelation(spe,
+                                   celltype = "mean_celltype_correlation",
+                                   sce_ref = sce_ref,
+                                   ref_celltype = "celltype",
+                                   method = c("pearson"),
+                                   spe_exprs_values = "logcounts",
+                                   ref_exprs_values = "prop_detected")
+diag(spe@metadata$CellSPA$similarity_metrics$agg_prop_detected_correlation)
+```
+
+
+
+## Calculate marker F1 purity
+
+
+```{r}
+# Generate a positive marker list based on the reference data
+positive_marker_list <- generateMarkerList(sce_ref, type = "positive")
+positive_marker_list
+negative_marker_list <- generateMarkerList(sce_ref, type = "negative", t = 1)
+negative_marker_list
+```
+
+
+
+
+```{r}
+spe <- calMarkerPurity(spe,
+                       celltype = "mean_celltype_correlation",
+                       marker_list = positive_marker_list,
+                       marker_list_name = "positive")
+head(colData(spe))
+```
+
+
+
+```{r}
+spe <- calMarkerPurity(spe,
+                       celltype = "mean_celltype_correlation",
+                       marker_list = negative_marker_list,
+                       marker_list_name = "negative")
+head(colData(spe))
+```
+
+
+## Calculate marker expressed pct
+
+
+```{r}
+
+spe <- calMarkerPct(spe,
+                    celltype = "mean_celltype_correlation",
+                    marker_list = positive_marker_list,
+                    marker_list_name = "positive")
+head(colData(spe))
+```
+
+
+
+```{r}
+
+spe <- calMarkerPct(spe,
+                    celltype = "mean_celltype_correlation",
+                    marker_list = negative_marker_list,
+                    marker_list_name = "negative")
+head(colData(spe))
+```
+
+
+
+# Spatial Variation
+
+```{r}
+spe <- calSpatialMetricsDiversity(spe, 
+                                  celltype = "mean_celltype_correlation")
+```
+
+
+```{r}
+df <- spe@metadata$CellSPA$spatialMetricsDiversity$results
+ggplot(df, aes(x = x_bin, y = y_bin, fill = `cellTypeProp_ECM1+ Malignant`)) +
+    geom_tile() +
+    scale_fill_viridis_c() +
+    theme(aspect.ratio = 1, 
+          axis.text.x = element_blank(),
+          axis.text.y = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(fill = "ECM1+ Malignant %") 
+
+
+ggplot(df, aes(x = entropy, y = cv_total_transciprts, 
+               color = `cellTypeProp_ECM1+ Malignant`)) +
+    geom_point() +
+    scale_color_viridis_c() +
+    theme(aspect.ratio = 1, 
+          axis.text.x = element_blank(),
+          axis.text.y = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(color = "ECM1+ Malignant %")
+```
+
+
+# Neighbour purity
+
+```{r}
+nn_celltype_pair <- c("B Cells", "CD4 T|CD8 T")
+neg_markers <- list("B Cells" = c("CD3C", "CD3E", "CD8A"),
+                    "CD4 T|CD8 T" = c("MS4A1", "CD79A", "CD79B"))
+spe <- calNegMarkerVsDist(spe,
+                          "mean_celltype_correlation",
+                          nn_celltype_pair,
+                          neg_markers)
+spe@metadata$CellSPA$`negMarkerExprs_vs_dist`
+```
+
+
+# Read 10x output
+
+
+```{r}
+spe_10x <- readXenium("data/10x_output/",
+                      tiff_path = "data/10x_output/10x_from_csv.tif")
+```
+
+
+```{r}
+
+keep_idx <- spatialCoords(spe_10x)[, 2] <= max(spatialCoords(spe)[, 1]) &
+    spatialCoords(spe_10x)[, 2] >= min(spatialCoords(spe)[, 1])
+spe_10x <- CellSPA::subset(spe_10x, which(keep_idx))
+spe_10x <- processingSPE(spe_10x,
+                         qc_range = list(total_transciprts = c(20, 2000),
+                                         total_genes = c(20, Inf)))
+spe_10x <- CellSPA::subset(spe_10x, 1:500)
+spe_10x
+```
+
+
+
+
+
+Run CellSPA with a wrapper function `CellSPA`.
+
+```{r}
+spe_10x <- CellSPA(spe_10x,
+                   spe_celltype = NULL,
+                   sce_ref = sce_ref,
+                   ref_celltype = sce_ref$celltype,
+                   positive_marker_list = positive_marker_list,
+                   negative_marker_list = negative_marker_list,
+                   nn_celltype_pair = nn_celltype_pair,
+                   nn_neg_markers_list = neg_markers,
+                   exprs_values = "logcounts",
+                   use_BPPARAM = BiocParallel::SerialParam(),
+                   verbose = TRUE)
+```
+
+
+# Visualisation
+
+## Within method
+
+We can use `plotColData` in `scater` package to visualise the baseline metrics.
+
+```{r}
+scater::plotColData(spe, "total_transciprts", 
+                    x = "mean_celltype_correlation", 
+                    colour_by = "mean_celltype_correlation") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+
+
+scater::plotColData(spe, "elongation", 
+                    x = "mean_celltype_correlation", 
+                    colour_by = "mean_celltype_correlation") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+```
+
+
+```{r}
+spe_list <- list(BIDCell = spe,
+                 `10x` = spe_10x)
+```
+
+
+
+# Session Info
+
+```{r}
+sessionInfo()
+```
+
+

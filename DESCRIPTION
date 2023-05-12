@@ -1,0 +1,48 @@
+Package: CellSPA
+Type: Package
+Title: Cell Segmentation Performance Assessment (CellSPA)
+Version: 0.1.0
+Authors@R: c(
+    person("Yingxin", "Lin", email = "yingxin.lin@sydney.edu.au", role = c("aut", "cre")),
+    person("Daniel", "Mechtersheimer", email = "dmec5133@uni.sydney.edu.au", role = c("aut")))
+Description: Quantify the cell segmentation via different aspects of metrics.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
+Depends: R (>= 3.6.0)
+Imports: 
+    SpatialExperiment,
+    SingleCellExperiment,
+    SummarizedExperiment,
+    DropletUtils,
+    scater,
+    S4Vectors,
+    utils,
+    methods,
+    tiff,
+    reshape2,
+    BiocParallel,
+    grDevices,
+    stats,
+    Matrix,
+    Metrics,
+    proxyC,
+    RcppParallel,
+    alphahull,
+    igraph,
+    rgeos,
+    shotGroups,
+    sp,
+    spatstat.geom,
+    maptools,
+    entropy,
+    data.table,
+    Matrix.utils
+Suggests: 
+    BiocStyle,
+    knitr,
+    rmarkdown,
+    ggthemes,
+    ggplot2
+VignetteBuilder: knitr
