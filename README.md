@@ -12,4 +12,4 @@ R package `CellSPA` can be installed as follows.
 BiocManager::install("SydneyBioX/CellSPA")
 ```
 
-
+Additional files for XeniumBreastCancer1 dataset may be found here: https://drive.google.com/drive/folders/1hvNFDFteLp_S7qwDJgucLlLETL3f0rTs?usp=sharing 
