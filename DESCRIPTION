@@ -38,7 +38,7 @@ Imports:
     maptools,
     entropy,
     data.table,
-    Matrix.utils
+    grr
 Suggests: 
     BiocStyle,
     knitr,

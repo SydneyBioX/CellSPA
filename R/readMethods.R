@@ -125,7 +125,7 @@ readBIDCell <- function(data_dir,
     if (sum(duplicated_cell_id) > 0) {
         warning(paste("There are", sum(duplicated_cell_id),
                       "cells with duplicated cell id"))
-        data <- Matrix.utils::aggregate.Matrix(data, cell_outputs$cell_id)
+        data <- aggregate.Matrix(data, cell_outputs$cell_id)
         rownames(data) <- paste("Cell", rownames(data), sep = "_")
         meta <- meta[!duplicated_cell_id, ]
         rownames(meta) <- paste("Cell", meta$cell_id, sep = "_")
