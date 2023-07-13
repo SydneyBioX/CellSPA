@@ -11,6 +11,9 @@ readTiffOutput(tiff_path)
 }
 \value{
 A SpatialExperiment object
+
+tiff_path <- system.file("extdata/BIDCell_output_subset.tif", package = "CellSPA")
+tiff_res <- readTiffOutput(tiff_path = tiff_path)
 }
 \description{
 Read Tiff output from BIDCell

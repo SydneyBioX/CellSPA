@@ -7,3 +7,5 @@ vignettes/data
 .DS_Store
 ^.*\.md$
 ^data-raw$
+TODO.md
+data-raw

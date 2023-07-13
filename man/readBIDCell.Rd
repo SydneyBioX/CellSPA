@@ -23,3 +23,12 @@ A SpatialExperiment object
 \description{
 Read BIDCell output
 }
+\examples{
+
+data_dir <- system.file("extdata/BIDCell_csv_output", package = "CellSPA")
+tiff_path <- system.file("extdata/BIDCell_output_subset.tif", package = "CellSPA")
+spe <- readBIDCell(data_dir,
+                   tiff_path = tiff_path,
+                   method_name = "BIDCell")
+
+}

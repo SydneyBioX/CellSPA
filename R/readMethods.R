@@ -19,6 +19,14 @@
 #' @importFrom SummarizedExperiment rowData
 #'
 #' @return A SpatialExperiment object
+#' @examples
+#'
+#' tenX_output_dir <- system.file("extdata/10x_output_subset", package = "CellSPA")
+#' tenX_output_tif <- system.file("extdata/10x_output_subset/10x_from_csv_subset.tif",
+#'                                 package = "CellSPA")
+#' spe_10x <- readXenium(tenX_output_dir,
+#'                       tiff_path = tenX_output_tif)
+#'
 #' @export
 
 
@@ -87,6 +95,14 @@ readXenium <- function(data_dir,
 #' @importFrom methods as
 #' @importFrom Matrix t
 #' @return A SpatialExperiment object
+#' @examples
+#'
+#' data_dir <- system.file("extdata/BIDCell_csv_output", package = "CellSPA")
+#' tiff_path <- system.file("extdata/BIDCell_output_subset.tif", package = "CellSPA")
+#' spe <- readBIDCell(data_dir,
+#'                    tiff_path = tiff_path,
+#'                    method_name = "BIDCell")
+#'
 #' @export
 
 
@@ -177,6 +193,9 @@ readBIDCell <- function(data_dir,
 #' @importFrom tiff readTIFF
 #' @importFrom reshape2 melt
 #' @return A SpatialExperiment object
+#'
+#' tiff_path <- system.file("extdata/BIDCell_output_subset.tif", package = "CellSPA")
+#' tiff_res <- readTiffOutput(tiff_path = tiff_path)
 #' @export
 
 readTiffOutput <- function(tiff_path) {

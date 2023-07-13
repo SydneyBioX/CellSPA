@@ -32,3 +32,12 @@ A SpatialExperiment object
 \description{
 Read Xenium output
 }
+\examples{
+
+tenX_output_dir <- system.file("extdata/10x_output_subset", package = "CellSPA")
+tenX_output_tif <- system.file("extdata/10x_output_subset/10x_from_csv_subset.tif",
+                                package = "CellSPA")
+spe_10x <- readXenium(tenX_output_dir,
+                      tiff_path = tenX_output_tif)
+
+}
