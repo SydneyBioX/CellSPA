@@ -41,8 +41,9 @@ theme_set(theme_bw())
 # Read BIDCell output
 
 ```{r}
-data_dir = "data/BIDCell_csv_output/"
-tiff_path = "data/epoch_1_step_4000_connected_v3.tif"
+data_dir <- system.file("extdata/BIDCell_csv_output", package = "CellSPA")
+data_dir
+tiff_path <- system.file("extdata/BIDCell_output_subset.tif", package = "CellSPA")
 spe <- readBIDCell(data_dir,
                    tiff_path = tiff_path,
                    method_name = "BIDCell")
@@ -81,7 +82,8 @@ head(colData(spe))
 ## Processing reference
 
 ```{r}
-sce_ref_full <- readRDS("data/sce_FFPE_full.rds")
+sce_ref_full <- readRDS(system.file("extdata/sce_FFPE_full.rds", 
+                            package = "CellSPA"))
 sce_ref <- processingRef(sce_ref_full, 
                          celltype = sce_ref_full$graph_cluster_anno, 
                          subset_row = rownames(spe))
@@ -242,8 +244,12 @@ spe@metadata$CellSPA$`negMarkerExprs_vs_dist`
 
 
 ```{r}
-spe_10x <- readXenium("data/10x_output/",
-                      tiff_path = "data/10x_output/10x_from_csv.tif")
+tenX_output_dir <- system.file("extdata/10x_output_subset", package = "CellSPA")
+tenX_output_tif <- system.file("extdata/10x_output_subset/10x_from_csv_subset.tif", package = "CellSPA")
+spe_10x <- readXenium(tenX_output_dir,
+                      tiff_path = tenX_output_tif)
+
+
 ```
 
 
@@ -252,6 +258,7 @@ spe_10x <- readXenium("data/10x_output/",
 keep_idx <- spatialCoords(spe_10x)[, 2] <= max(spatialCoords(spe)[, 1]) &
     spatialCoords(spe_10x)[, 2] >= min(spatialCoords(spe)[, 1])
 spe_10x <- CellSPA::subset(spe_10x, which(keep_idx))
+
 spe_10x <- processingSPE(spe_10x,
                          qc_range = list(total_transciprts = c(20, 2000),
                                          total_genes = c(20, Inf)))
