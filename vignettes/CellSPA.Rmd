@@ -46,7 +46,7 @@ theme_set(theme_bw())
 # Read BIDCell output
 
 ```{r, cache=TRUE}
-source("C:\\Users\\dmech\\OneDrive - The University of Sydney (Students)\\PhD\\Metrics\\CellSPA\\R\\cellshape_metrics.R")
+#source("C:\\Users\\dmech\\OneDrive - The University of Sydney (Students)\\PhD\\Metrics\\CellSPA\\R\\cellshape_metrics.R")
 # data_dir <- system.file("extdata/BIDCell_cells_breast1/", package = "CellSPA")
 # tiff_path <- system.file("extdata/BIDCell_cells_breast1.tif", package = "CellSPA")
 data_dir <- "data/BIDCell_cells_breast1"
