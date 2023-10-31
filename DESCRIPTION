@@ -35,6 +35,7 @@ Imports:
     igraph,
     shotGroups,
     sp,
+    sf,
     spatstat,
     spatstat.geom,
     entropy,

@@ -144,11 +144,11 @@ eccentricity <- function(x){
     if (methods::is(x, "matrix") | methods::is(x, "data.frame")) {
         # Calculate the alpha shape
         sp_poly <- ashape_to_poly2(x)[[1]]
-        sf_poly <- st_as_sf(sp_poly)
+        sf_poly <- sf::st_as_sf(sp_poly)
     }
 
     if (methods::is(x, "SpatialPolygons")) {
-        sf_poly <- st_as_sf(x)
+        sf_poly <- sf::st_as_sf(x)
     }
 
     major_axis <- find_major_axis(sf_poly)
@@ -213,10 +213,10 @@ convexity <- function(x, chull_polygon = NULL){
 
 
     # Calculate area of polygon object
-    perimeter <- as.numeric(lwgeom::st_perimeter_2d(st_as_sf(polygon)))
+    perimeter <- as.numeric(lwgeom::st_perimeter_2d(sf::st_as_sf(polygon)))
 
     # Calculate perimeter of convex hull object
-    ch_perimeter <- as.numeric(lwgeom::st_perimeter_2d(st_as_sf(ch_polygon)))
+    ch_perimeter <- as.numeric(lwgeom::st_perimeter_2d(sf::st_as_sf(ch_polygon)))
 
     return(ch_perimeter/perimeter)
 
@@ -242,7 +242,7 @@ circularity <- function(x, chull_polygon = NULL){
     area <- as.numeric(raster::area(polygon))
 
     # Calculate perimeter of convex hull object
-    ch_perimeter <- as.numeric(lwgeom::st_perimeter_2d(st_as_sf(ch_polygon)))
+    ch_perimeter <- as.numeric(lwgeom::st_perimeter_2d(sf::st_as_sf(ch_polygon)))
 
     #circularity calculation
     return((4*pi*area)/ ((ch_perimeter)^2))
@@ -264,7 +264,7 @@ compactness <- function(x) {
     area <- as.numeric(raster::area(poly_res))
 
     # Calculate perimeter of hull object
-    perimeter <- as.numeric(lwgeom::st_perimeter_2d(st_as_sf(poly_res)))
+    perimeter <- as.numeric(lwgeom::st_perimeter_2d(sf::st_as_sf(poly_res)))
 
 
     return((4*pi*area)/ ((perimeter)^2))
@@ -275,10 +275,10 @@ compactness <- function(x) {
 find_major_axis <- function(poly_res, num_samples = 25) {
 
     #we get the boundary poly_res and then create lots of samples along its perimeter
-    boundary <- st_boundary(poly_res)
-    boundary_length <- st_length(boundary)[[1]]
+    boundary <- sf::st_boundary(poly_res)
+    boundary_length <- sf::st_length(boundary)[[1]]
     segment_length <- boundary_length / num_samples
-    boundary_points <- st_coordinates(st_segmentize(boundary, segment_length))
+    boundary_points <- sf::st_coordinates(sf::st_segmentize(boundary, segment_length))
 
     max_distance <- -Inf
     max_indices <- c(0, 0)
@@ -286,8 +286,8 @@ find_major_axis <- function(poly_res, num_samples = 25) {
     #loop through sampled x,y boundary points to find lines, keep biggest
     for (i in 1:(num_boundary_points - 1)) {
         for (j in (i + 1):num_boundary_points) {
-            line_segment <- st_linestring(matrix(c(boundary_points[i,], boundary_points[j,]), nrow = 2, byrow = TRUE))
-            contains_result <- st_contains(poly_res, st_sfc(line_segment))
+            line_segment <- sf::st_linestring(matrix(c(boundary_points[i,], boundary_points[j,]), nrow = 2, byrow = TRUE))
+            contains_result <- sf::st_contains(poly_res, sf::st_sfc(line_segment))
 
             if (length(contains_result[[1]]) > 0) {  # line segment is contained inside the poly_res or part of its perimeter
                 current_distance <- sqrt((boundary_points[i, 1] - boundary_points[j, 1])^2 +
@@ -312,14 +312,14 @@ find_major_axis <- function(poly_res, num_samples = 25) {
     return(result)
 }
 find_minor_axis <- function(poly_res, major_axis_endpoints, num_samples = 25, angle_threshold = 2) {
-    boundary <- st_boundary(poly_res)
-    boundary_length <- st_length(boundary)[[1]]
+    boundary <- sf::st_boundary(poly_res)
+    boundary_length <- sf::st_length(boundary)[[1]]
     segment_length <- boundary_length / num_samples
-    boundary_points <- st_coordinates(st_segmentize(boundary, segment_length))
+    boundary_points <- sf::st_coordinates(sf::st_segmentize(boundary, segment_length))
 
     major_axis_vector <- major_axis_endpoints[2,] - major_axis_endpoints[1,]
     major_axis_angle <- atan2(major_axis_vector[2], major_axis_vector[1])
-    major_axis_line <- st_linestring(major_axis_endpoints)
+    major_axis_line <- sf::st_linestring(major_axis_endpoints)
 
     max_distance <- -Inf
     max_indices <- c(0, 0)
@@ -327,12 +327,12 @@ find_minor_axis <- function(poly_res, major_axis_endpoints, num_samples = 25, an
 
     for (i in 1:(num_boundary_points - 1)) {
         for (j in (i + 1):num_boundary_points) {
-            line_segment <- st_linestring(matrix(c(boundary_points[i,], boundary_points[j,]), nrow = 2, byrow = TRUE))
-            contains_result <- st_contains(poly_res, st_sfc(line_segment))
+            line_segment <- sf::st_linestring(matrix(c(boundary_points[i,], boundary_points[j,]), nrow = 2, byrow = TRUE))
+            contains_result <- sf::st_contains(poly_res, sf::st_sfc(line_segment))
 
             if (length(contains_result[[1]]) > 0) {  # line segment is contained inside the poly_res or part of its perimeter
                 # Check if the line segment intersects the major axis
-                intersects_result <- st_intersects(major_axis_line, st_sfc(line_segment))
+                intersects_result <- sf::st_intersects(major_axis_line, sf::st_sfc(line_segment))
 
                 if (length(intersects_result[[1]]) > 0) {
                     line_segment_vector <- boundary_points[j,] - boundary_points[i,]
