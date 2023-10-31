@@ -27,30 +27,35 @@ library(BiocStyle)
 
 
 
-```{r}
+```{r, include=FALSE}
+
 library(CellSPA)
 library(ggplot2)
 library(ggthemes)
 library(scater)
 library(SingleCellExperiment)
 library(SpatialExperiment)
+#Not seemingly starting
+library(sf)
+library(spatstat)
+library(lwgeom)
 theme_set(theme_bw())
 ```
 
 
 # Read BIDCell output
 
-```{r}
-data_dir <- system.file("extdata/BIDCell_csv_output", package = "CellSPA")
-data_dir
-tiff_path <- system.file("extdata/BIDCell_output_subset.tif", package = "CellSPA")
+```{r, cache=TRUE}
+
+# data_dir <- system.file("extdata/BIDCell_cells_breast1/", package = "CellSPA")
+# tiff_path <- system.file("extdata/BIDCell_cells_breast1.tif", package = "CellSPA")
 spe <- readBIDCell(data_dir,
                    tiff_path = tiff_path,
                    method_name = "BIDCell")
 ```
 
 
-```{r}
+```{r, cache=TRUE}
 spe <- processingSPE(spe,
                      qc_range = list(total_transciprts = c(20, 2000),
                                      total_genes = c(20, Inf)))
@@ -59,9 +64,9 @@ spe <- processingSPE(spe,
 
 
 ```{r}
-# subset a set of cells for illustration
+#subset a set of cells for illustration
 spe <- CellSPA::subset(spe, 1:500)
-spe
+
 ```
 
 
@@ -69,6 +74,7 @@ spe
 
 
 ```{r}
+
 spe <- generatePolygon(spe)
 spe <- calBaselineAllMetrics(spe, verbose = TRUE)
 head(rowData(spe))
