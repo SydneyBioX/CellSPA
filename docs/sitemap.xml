@@ -1,96 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/TODO.html</loc>
-  </url>
-  <url>
-    <loc>/articles/CellSPA.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/CellSPA.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calAggExpressionCorrelation.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calBaselineAllMetrics.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calBaselineCellMetrics.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calBaselineCellShapeMetrics.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calExpressionCorrelation.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calMarkerPct.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calMarkerPurity.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calNegMarkerVsDist.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calSpatialMetricsDiversity.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calcualteMarkerPct.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calcualteMarkerPurity.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calculateNegMarkerVsDist.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calculateSpatialMetricsDiversity.html</loc>
-  </url>
-  <url>
-    <loc>/reference/generateMarkerList.html</loc>
-  </url>
-  <url>
-    <loc>/reference/generatePolygon.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/processingRef.html</loc>
-  </url>
-  <url>
-    <loc>/reference/processingSPE.html</loc>
-  </url>
-  <url>
-    <loc>/reference/readBIDCell.html</loc>
-  </url>
-  <url>
-    <loc>/reference/readTiffOutput.html</loc>
-  </url>
-  <url>
-    <loc>/reference/readVizgen.html</loc>
-  </url>
-  <url>
-    <loc>/reference/readXenium.html</loc>
-  </url>
-  <url>
-    <loc>/reference/spe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/subset.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/articles/CellSPA.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/reference/CellSPA.html</loc></url>
+<url><loc>/reference/calAggExpressionCorrelation.html</loc></url>
+<url><loc>/reference/calBaselineAllMetrics.html</loc></url>
+<url><loc>/reference/calBaselineCellMetrics.html</loc></url>
+<url><loc>/reference/calBaselineCellShapeMetrics.html</loc></url>
+<url><loc>/reference/calExpressionCorrelation.html</loc></url>
+<url><loc>/reference/calMarkerPct.html</loc></url>
+<url><loc>/reference/calMarkerPurity.html</loc></url>
+<url><loc>/reference/calNegMarkerVsDist.html</loc></url>
+<url><loc>/reference/calSpatialMetricsDiversity.html</loc></url>
+<url><loc>/reference/calcualteMarkerPct.html</loc></url>
+<url><loc>/reference/calcualteMarkerPurity.html</loc></url>
+<url><loc>/reference/calculateNegMarkerVsDist.html</loc></url>
+<url><loc>/reference/calculateSpatialMetricsDiversity.html</loc></url>
+<url><loc>/reference/generateMarkerList.html</loc></url>
+<url><loc>/reference/generatePolygon.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/processingRef.html</loc></url>
+<url><loc>/reference/processingSPE.html</loc></url>
+<url><loc>/reference/readBIDCell.html</loc></url>
+<url><loc>/reference/readMatrixMask_per_sample.html</loc></url>
+<url><loc>/reference/readSimpleSeg.html</loc></url>
+<url><loc>/reference/readSimpleSeg_per_sample.html</loc></url>
+<url><loc>/reference/readTiffOutput.html</loc></url>
+<url><loc>/reference/readVizgen.html</loc></url>
+<url><loc>/reference/readXenium.html</loc></url>
+<url><loc>/reference/spe.html</loc></url>
+<url><loc>/reference/subset.html</loc></url>
 </urlset>
+

@@ -6,20 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>An introduction to CellSPA • CellSPA</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="An introduction to CellSPA">
-<meta property="og:description" content="CellSPA">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -54,7 +53,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
@@ -74,7 +73,7 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">CellSPA</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes" class="external-link">ggthemes</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jrnold.github.io/ggthemes/" class="external-link">ggthemes</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://bioconductor.org/packages/scater/" class="external-link">scater</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SingleCellExperiment</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/drighelli/SpatialExperiment" class="external-link">SpatialExperiment</a></span><span class="op">)</span></span>
@@ -85,7 +84,7 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/BIDCell_csv_output"</span>, package <span class="op">=</span> <span class="st">"CellSPA"</span><span class="op">)</span></span>
 <span><span class="va">data_dir</span></span>
-<span><span class="co">#&gt; [1] "/private/var/folders/80/p95h23h55rs4lv59jms7k0fc0000gn/T/Rtmp5FCHvo/temp_libpathd7804409ffcd/CellSPA/extdata/BIDCell_csv_output"</span></span>
+<span><span class="co">#&gt; [1] "/dskh/nobackup/yingxinl/tmp/Rtmp9613Vz/temp_libpathfb1437c4f658b/CellSPA/extdata/BIDCell_csv_output"</span></span>
 <span><span class="va">tiff_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/BIDCell_output_subset.tif"</span>, package <span class="op">=</span> <span class="st">"CellSPA"</span><span class="op">)</span></span>
 <span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/readBIDCell.html">readBIDCell</a></span><span class="op">(</span><span class="va">data_dir</span>,</span>
 <span>                   tiff_path <span class="op">=</span> <span class="va">tiff_path</span>,</span>
@@ -115,106 +114,75 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <div class="section level2">
 <h2 id="baseline-metrics">Baseline metrics<a class="anchor" aria-label="anchor" href="#baseline-metrics"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">generatePolygon</span>(spe)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">calBaselineAllMetrics</span>(spe, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Metrics to run:  total_transciprts, total_genes, total_cells, meanExprsPct_cells"</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating elongation"</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating compactness"</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating eccentricity"</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating sphericity"</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating solidity"</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating convexity"</span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating circularity"</span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">rowData</span>(spe))</span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; DataFrame with 6 rows and 2 columns</span></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         total_cells meanExprsPct_cells</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;integer&gt;          &lt;numeric&gt;</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; SEC11C          248              0.496</span></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; DAPK3            54              0.108</span></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; TCIM            316              0.632</span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NKG7             16              0.032</span></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; RAPGEF3          69              0.138</span></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; PPARG            93              0.186</span></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">colData</span>(spe))</span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; DataFrame with 6 rows and 20 columns</span></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              cell_id pixel_size eccentricity cell_type  spearman</span></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            &lt;numeric&gt;  &lt;numeric&gt;    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27210     27210         92     0.727273         7  0.578500</span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27211     27211         56     0.433962         6  0.408182</span></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27212     27212        181     0.928000         7  0.569310</span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27213     27213        115     0.923077         7  0.474430</span></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27214     27214        122     0.336957         7  0.538882</span></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27215     27215        153     0.839744         7  0.546259</span></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            cell_type_atlas total_reads total_genes     slide   sample_id</span></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  &lt;numeric&gt;   &lt;numeric&gt;   &lt;integer&gt; &lt;integer&gt; &lt;character&gt;</span></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27210               5         265          79         1    sample01</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27211              41          74          40         1    sample01</span></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27212               5         402          85         1    sample01</span></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27213              42         289          92         1    sample01</span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27214               5         172          62         1    sample01</span></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27215              42         259          67         1    sample01</span></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            total_transciprts sizeFactor cell_area elongation compactness</span></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt;   &lt;numeric&gt;</span></span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27210               265   1.002193        92   0.727273    0.792508</span></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27211                74   0.279858        56   0.433962    0.545574</span></span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27212               402   1.520309       181   0.928000    0.716283</span></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27213               289   1.092958       115   0.923077    0.635395</span></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27214               172   0.650480       122   0.336957    0.340099</span></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27215               259   0.979502       153   0.839744    0.358405</span></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            sphericity  solidity convexity circularity   density</span></span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27210   0.674331  0.949367  0.971781    0.839202   2.88043</span></span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27211   0.380391  0.847619  0.970686    0.579024   1.32143</span></span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27212   0.626272  0.883905  0.950348    0.793084   2.22099</span></span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27213   0.561809  0.840164  0.961928    0.686686   2.51304</span></span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27214   0.276051  0.731293  0.907927    0.412575   1.40984</span></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Cell_27215   0.469189  0.615385  0.801868    0.557402   1.69281</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generatePolygon.html">generatePolygon</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calBaselineAllMetrics.html">calBaselineAllMetrics</a></span><span class="op">(</span><span class="va">spe</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Metrics to run:  total_transciprts, total_genes, total_cells, meanExprsPct_cells"</span></span>
+<span><span class="co">#&gt; [1] "Calculating elongation"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating compactness"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating eccentricity"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating sphericity"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating solidity"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating convexity"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating circularity"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">rowData</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; DataFrame with 6 rows and 2 columns</span></span>
+<span><span class="co">#&gt;         total_cells meanExprsPct_cells</span></span>
+<span><span class="co">#&gt;           &lt;integer&gt;          &lt;numeric&gt;</span></span>
+<span><span class="co">#&gt; SEC11C          248              0.496</span></span>
+<span><span class="co">#&gt; DAPK3            54              0.108</span></span>
+<span><span class="co">#&gt; TCIM            316              0.632</span></span>
+<span><span class="co">#&gt; NKG7             16              0.032</span></span>
+<span><span class="co">#&gt; RAPGEF3          69              0.138</span></span>
+<span><span class="co">#&gt; PPARG            93              0.186</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; DataFrame with 6 rows and 20 columns</span></span>
+<span><span class="co">#&gt;              cell_id pixel_size eccentricity cell_type  spearman</span></span>
+<span><span class="co">#&gt;            &lt;numeric&gt;  &lt;numeric&gt;    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;</span></span>
+<span><span class="co">#&gt; Cell_27210     27210         92     0.727273         7  0.578500</span></span>
+<span><span class="co">#&gt; Cell_27211     27211         56     0.433962         6  0.408182</span></span>
+<span><span class="co">#&gt; Cell_27212     27212        181     0.928000         7  0.569310</span></span>
+<span><span class="co">#&gt; Cell_27213     27213        115     0.923077         7  0.474430</span></span>
+<span><span class="co">#&gt; Cell_27214     27214        122     0.336957         7  0.538882</span></span>
+<span><span class="co">#&gt; Cell_27215     27215        153     0.839744         7  0.546259</span></span>
+<span><span class="co">#&gt;            cell_type_atlas total_reads total_genes     slide   sample_id</span></span>
+<span><span class="co">#&gt;                  &lt;numeric&gt;   &lt;numeric&gt;   &lt;integer&gt; &lt;integer&gt; &lt;character&gt;</span></span>
+<span><span class="co">#&gt; Cell_27210               5         265          79         1    sample01</span></span>
+<span><span class="co">#&gt; Cell_27211              41          74          40         1    sample01</span></span>
+<span><span class="co">#&gt; Cell_27212               5         402          85         1    sample01</span></span>
+<span><span class="co">#&gt; Cell_27213              42         289          92         1    sample01</span></span>
+<span><span class="co">#&gt; Cell_27214               5         172          62         1    sample01</span></span>
+<span><span class="co">#&gt; Cell_27215              42         259          67         1    sample01</span></span>
+<span><span class="co">#&gt;            total_transciprts sizeFactor cell_area elongation compactness</span></span>
+<span><span class="co">#&gt;                    &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt;   &lt;numeric&gt;</span></span>
+<span><span class="co">#&gt; Cell_27210               265   1.002193        92   0.727273    0.792508</span></span>
+<span><span class="co">#&gt; Cell_27211                74   0.279858        56   0.433962    0.545574</span></span>
+<span><span class="co">#&gt; Cell_27212               402   1.520309       181   0.928000    0.716283</span></span>
+<span><span class="co">#&gt; Cell_27213               289   1.092958       115   0.923077    0.635395</span></span>
+<span><span class="co">#&gt; Cell_27214               172   0.650480       122   0.336957    0.340099</span></span>
+<span><span class="co">#&gt; Cell_27215               259   0.979502       153   0.839744    0.358405</span></span>
+<span><span class="co">#&gt;            sphericity  solidity convexity circularity   density</span></span>
+<span><span class="co">#&gt;             &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;</span></span>
+<span><span class="co">#&gt; Cell_27210   0.674331  0.949367  0.971781    0.839202   2.88043</span></span>
+<span><span class="co">#&gt; Cell_27211   0.380391  0.847619  0.970686    0.579024   1.32143</span></span>
+<span><span class="co">#&gt; Cell_27212   0.626272  0.883905  0.950348    0.793084   2.22099</span></span>
+<span><span class="co">#&gt; Cell_27213   0.561809  0.840164  0.961928    0.686686   2.51304</span></span>
+<span><span class="co">#&gt; Cell_27214   0.276051  0.731293  0.907927    0.412575   1.40984</span></span>
+<span><span class="co">#&gt; Cell_27215   0.469189  0.615385  0.801868    0.557402   1.69281</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="expression-similarity">Expression similarity<a class="anchor" aria-label="anchor" href="#expression-similarity"></a>
@@ -1116,101 +1084,54 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; spatialCoords names(2) : x_centroid y_centroid</span></span>
 <span><span class="co">#&gt; imgData names(1): sample_id</span></span></code></pre></div>
 <p>Run CellSPA with a wrapper function <code>CellSPA</code>.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>spe_10x <span class="ot">&lt;-</span> <span class="fu">CellSPA</span>(spe_10x,</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">spe_celltype =</span> <span class="cn">NULL</span>,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sce_ref =</span> sce_ref,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ref_celltype =</span> sce_ref<span class="sc">$</span>celltype,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">positive_marker_list =</span> positive_marker_list,</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">negative_marker_list =</span> negative_marker_list,</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">nn_celltype_pair =</span> nn_celltype_pair,</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">nn_neg_markers_list =</span> neg_markers,</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">exprs_values =</span> <span class="st">"logcounts"</span>,</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">use_BPPARAM =</span> BiocParallel<span class="sc">::</span><span class="fu">SerialParam</span>(),</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Metrics to run:  total_transciprts, total_genes, total_cells, meanExprsPct_cells"</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating elongation"</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating compactness"</span></span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating eccentricity"</span></span>
-<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating sphericity"</span></span>
-<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating solidity"</span></span>
-<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb22-53"><a href="#cb22-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-54"><a href="#cb22-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating convexity"</span></span>
-<span id="cb22-55"><a href="#cb22-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-56"><a href="#cb22-56" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-57"><a href="#cb22-57" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb22-58"><a href="#cb22-58" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-59"><a href="#cb22-59" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb22-60"><a href="#cb22-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-61"><a href="#cb22-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating circularity"</span></span>
-<span id="cb22-62"><a href="#cb22-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-63"><a href="#cb22-63" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-64"><a href="#cb22-64" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb22-65"><a href="#cb22-65" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-66"><a href="#cb22-66" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb22-67"><a href="#cb22-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-68"><a href="#cb22-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating expression correlation metrics"</span></span>
-<span id="cb22-69"><a href="#cb22-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating marker purity metrics"</span></span>
-<span id="cb22-70"><a href="#cb22-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-71"><a href="#cb22-71" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-72"><a href="#cb22-72" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb22-73"><a href="#cb22-73" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-74"><a href="#cb22-74" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb22-75"><a href="#cb22-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-76"><a href="#cb22-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-77"><a href="#cb22-77" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-78"><a href="#cb22-78" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb22-79"><a href="#cb22-79" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-80"><a href="#cb22-80" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb22-81"><a href="#cb22-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-82"><a href="#cb22-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-83"><a href="#cb22-83" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-84"><a href="#cb22-84" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb22-85"><a href="#cb22-85" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-86"><a href="#cb22-86" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb22-87"><a href="#cb22-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-88"><a href="#cb22-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-89"><a href="#cb22-89" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-90"><a href="#cb22-90" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb22-91"><a href="#cb22-91" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb22-92"><a href="#cb22-92" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb22-93"><a href="#cb22-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-94"><a href="#cb22-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating spatial diversity metrics"</span></span>
-<span id="cb22-95"><a href="#cb22-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Calculating nn marker metrics"</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">spe_10x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CellSPA.html">CellSPA</a></span><span class="op">(</span><span class="va">spe_10x</span>,</span>
+<span>                   spe_celltype <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>                   sce_ref <span class="op">=</span> <span class="va">sce_ref</span>,</span>
+<span>                   ref_celltype <span class="op">=</span> <span class="va">sce_ref</span><span class="op">$</span><span class="va">celltype</span>,</span>
+<span>                   positive_marker_list <span class="op">=</span> <span class="va">positive_marker_list</span>,</span>
+<span>                   negative_marker_list <span class="op">=</span> <span class="va">negative_marker_list</span>,</span>
+<span>                   nn_celltype_pair <span class="op">=</span> <span class="va">nn_celltype_pair</span>,</span>
+<span>                   nn_neg_markers_list <span class="op">=</span> <span class="va">neg_markers</span>,</span>
+<span>                   exprs_values <span class="op">=</span> <span class="st">"logcounts"</span>,</span>
+<span>                   use_BPPARAM <span class="op">=</span> <span class="fu">BiocParallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocParallel/man/SerialParam-class.html" class="external-link">SerialParam</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                   verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Metrics to run:  total_transciprts, total_genes, total_cells, meanExprsPct_cells"</span></span>
+<span><span class="co">#&gt; [1] "Calculating elongation"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating compactness"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating eccentricity"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating sphericity"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating solidity"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating convexity"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating circularity"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating expression correlation metrics"</span></span>
+<span><span class="co">#&gt; [1] "Calculating marker purity metrics"</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [1] "Calculating spatial diversity metrics"</span></span>
+<span><span class="co">#&gt; [1] "Calculating nn marker metrics"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="visualisation">Visualisation<a class="anchor" aria-label="anchor" href="#visualisation"></a>
@@ -1244,111 +1165,116 @@ visualise the baseline metrics.</p>
 </h2>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; R version 4.2.1 (2022-06-23)</span></span>
-<span><span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span></span>
-<span><span class="co">#&gt; Running under: macOS Catalina 10.15.7</span></span>
+<span><span class="co">#&gt; R version 4.4.1 (2024-06-14)</span></span>
+<span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
+<span><span class="co">#&gt; Running under: Debian GNU/Linux 12 (bookworm)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
-<span><span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib</span></span>
-<span><span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib</span></span>
+<span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
+<span><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.21.so;  LAPACK version 3.11.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; locale:</span></span>
-<span><span class="co">#&gt; [1] en_AU.UTF-8/en_AU.UTF-8/en_AU.UTF-8/C/en_AU.UTF-8/en_AU.UTF-8</span></span>
+<span><span class="co">#&gt;  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span></span>
+<span><span class="co">#&gt;  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   </span></span>
+<span><span class="co">#&gt;  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          </span></span>
+<span><span class="co">#&gt; [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; time zone: Australia/Sydney</span></span>
+<span><span class="co">#&gt; tzcode source: system (glibc)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; attached base packages:</span></span>
 <span><span class="co">#&gt; [1] stats4    stats     graphics  grDevices utils     datasets  methods  </span></span>
 <span><span class="co">#&gt; [8] base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt;  [1] SpatialExperiment_1.6.1     scater_1.24.0              </span></span>
-<span><span class="co">#&gt;  [3] scuttle_1.6.3               SingleCellExperiment_1.18.1</span></span>
-<span><span class="co">#&gt;  [5] SummarizedExperiment_1.26.1 Biobase_2.56.0             </span></span>
-<span><span class="co">#&gt;  [7] GenomicRanges_1.48.0        GenomeInfoDb_1.32.4        </span></span>
-<span><span class="co">#&gt;  [9] IRanges_2.30.1              S4Vectors_0.34.0           </span></span>
-<span><span class="co">#&gt; [11] BiocGenerics_0.42.0         MatrixGenerics_1.8.1       </span></span>
-<span><span class="co">#&gt; [13] matrixStats_0.62.0          ggthemes_4.2.4             </span></span>
-<span><span class="co">#&gt; [15] ggplot2_3.4.0               CellSPA_0.1.0              </span></span>
-<span><span class="co">#&gt; [17] BiocStyle_2.24.0           </span></span>
+<span><span class="co">#&gt;  [1] SpatialExperiment_1.14.0    scater_1.32.1              </span></span>
+<span><span class="co">#&gt;  [3] scuttle_1.14.0              SingleCellExperiment_1.26.0</span></span>
+<span><span class="co">#&gt;  [5] SummarizedExperiment_1.34.0 Biobase_2.64.0             </span></span>
+<span><span class="co">#&gt;  [7] GenomicRanges_1.56.1        GenomeInfoDb_1.40.1        </span></span>
+<span><span class="co">#&gt;  [9] IRanges_2.38.1              S4Vectors_0.42.1           </span></span>
+<span><span class="co">#&gt; [11] BiocGenerics_0.50.0         MatrixGenerics_1.16.0      </span></span>
+<span><span class="co">#&gt; [13] matrixStats_1.4.1           ggthemes_5.1.0             </span></span>
+<span><span class="co">#&gt; [15] ggplot2_3.5.1               CellSPA_0.1.0              </span></span>
+<span><span class="co">#&gt; [17] BiocStyle_2.32.1           </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;   [1] systemfonts_1.0.4         plyr_1.8.8               </span></span>
-<span><span class="co">#&gt;   [3] igraph_1.3.5              sp_1.5-1                 </span></span>
-<span><span class="co">#&gt;   [5] proxyC_0.3.3              splines_4.2.1            </span></span>
-<span><span class="co">#&gt;   [7] entropy_1.3.1             BiocParallel_1.30.4      </span></span>
-<span><span class="co">#&gt;   [9] TH.data_1.1-2             digest_0.6.30            </span></span>
-<span><span class="co">#&gt;  [11] htmltools_0.5.3           viridis_0.6.2            </span></span>
-<span><span class="co">#&gt;  [13] magick_2.7.4              tiff_0.1-11              </span></span>
-<span><span class="co">#&gt;  [15] fansi_1.0.3               magrittr_2.0.3           </span></span>
-<span><span class="co">#&gt;  [17] memoise_2.0.1             ScaledMatrix_1.4.1       </span></span>
-<span><span class="co">#&gt;  [19] limma_3.52.4              Metrics_0.1.4            </span></span>
-<span><span class="co">#&gt;  [21] RcppParallel_5.1.5        R.utils_2.12.0           </span></span>
-<span><span class="co">#&gt;  [23] sandwich_3.0-2            pkgdown_2.0.6            </span></span>
-<span><span class="co">#&gt;  [25] colorspace_2.0-3          ggrepel_0.9.1            </span></span>
-<span><span class="co">#&gt;  [27] textshaping_0.3.6         xfun_0.39.1              </span></span>
-<span><span class="co">#&gt;  [29] dplyr_1.0.10              libcoin_1.0-9            </span></span>
-<span><span class="co">#&gt;  [31] RCurl_1.98-1.9            jsonlite_1.8.4           </span></span>
-<span><span class="co">#&gt;  [33] spatstat.data_3.0-1       zoo_1.8-11               </span></span>
-<span><span class="co">#&gt;  [35] survival_3.3-1            glue_1.6.2               </span></span>
-<span><span class="co">#&gt;  [37] polyclip_1.10-4           gtable_0.3.1             </span></span>
-<span><span class="co">#&gt;  [39] zlibbioc_1.42.0           XVector_0.36.0           </span></span>
-<span><span class="co">#&gt;  [41] DelayedArray_0.22.0       BiocSingular_1.12.0      </span></span>
-<span><span class="co">#&gt;  [43] DropletUtils_1.16.0       Rhdf5lib_1.18.2          </span></span>
-<span><span class="co">#&gt;  [45] DEoptimR_1.0-11           HDF5Array_1.24.2         </span></span>
-<span><span class="co">#&gt;  [47] scales_1.2.1              sgeostat_1.0-27          </span></span>
-<span><span class="co">#&gt;  [49] mvtnorm_1.1-3             DBI_1.1.3                </span></span>
-<span><span class="co">#&gt;  [51] edgeR_3.38.4              spatstat.random_3.1-4    </span></span>
-<span><span class="co">#&gt;  [53] Rcpp_1.0.10               viridisLite_0.4.1        </span></span>
-<span><span class="co">#&gt;  [55] dqrng_0.3.0               foreign_0.8-82           </span></span>
-<span><span class="co">#&gt;  [57] rsvd_1.0.5                FNN_1.1.3.1              </span></span>
-<span><span class="co">#&gt;  [59] modeltools_0.2-23         farver_2.1.1             </span></span>
-<span><span class="co">#&gt;  [61] pkgconfig_2.0.3           R.methodsS3_1.8.2        </span></span>
-<span><span class="co">#&gt;  [63] sass_0.4.2                uwot_0.1.14              </span></span>
-<span><span class="co">#&gt;  [65] deldir_1.0-6              alphahull_2.5            </span></span>
-<span><span class="co">#&gt;  [67] locfit_1.5-9.6            utf8_1.2.2               </span></span>
-<span><span class="co">#&gt;  [69] labeling_0.4.2            tidyselect_1.2.0         </span></span>
-<span><span class="co">#&gt;  [71] rlang_1.0.6               reshape2_1.4.4           </span></span>
-<span><span class="co">#&gt;  [73] munsell_0.5.0             tools_4.2.1              </span></span>
-<span><span class="co">#&gt;  [75] cachem_1.0.6              cli_3.4.1                </span></span>
-<span><span class="co">#&gt;  [77] generics_0.1.3            shotGroups_0.8.2         </span></span>
-<span><span class="co">#&gt;  [79] splancs_2.01-43           evaluate_0.17            </span></span>
-<span><span class="co">#&gt;  [81] stringr_1.5.0             fastmap_1.1.0            </span></span>
-<span><span class="co">#&gt;  [83] yaml_2.3.6                ragg_1.2.3               </span></span>
-<span><span class="co">#&gt;  [85] knitr_1.42                fs_1.5.2                 </span></span>
-<span><span class="co">#&gt;  [87] robustbase_0.95-0         purrr_0.3.5              </span></span>
-<span><span class="co">#&gt;  [89] coin_1.4-2                sparseMatrixStats_1.8.0  </span></span>
-<span><span class="co">#&gt;  [91] R.oo_1.25.0               compiler_4.2.1           </span></span>
-<span><span class="co">#&gt;  [93] rstudioapi_0.14           beeswarm_0.4.0           </span></span>
-<span><span class="co">#&gt;  [95] spatstat.utils_3.0-2      tibble_3.1.8             </span></span>
-<span><span class="co">#&gt;  [97] bslib_0.4.0               stringi_1.7.8            </span></span>
-<span><span class="co">#&gt;  [99] highr_0.9                 desc_1.4.2               </span></span>
-<span><span class="co">#&gt; [101] rgeos_0.6-2               lattice_0.20-45          </span></span>
-<span><span class="co">#&gt; [103] Matrix_1.5-1              vctrs_0.5.1              </span></span>
-<span><span class="co">#&gt; [105] CompQuadForm_1.4.3        pillar_1.8.1             </span></span>
-<span><span class="co">#&gt; [107] lifecycle_1.0.3           rhdf5filters_1.8.0       </span></span>
-<span><span class="co">#&gt; [109] BiocManager_1.30.18       spatstat.geom_3.1-0      </span></span>
-<span><span class="co">#&gt; [111] jquerylib_0.1.4           RcppAnnoy_0.0.20         </span></span>
-<span><span class="co">#&gt; [113] BiocNeighbors_1.14.0      cowplot_1.1.1            </span></span>
-<span><span class="co">#&gt; [115] maptools_1.1-6            data.table_1.14.4        </span></span>
-<span><span class="co">#&gt; [117] bitops_1.0-7              irlba_2.3.5.1            </span></span>
-<span><span class="co">#&gt; [119] R6_2.5.1                  bookdown_0.29            </span></span>
-<span><span class="co">#&gt; [121] KernSmooth_2.23-20        gridExtra_2.3            </span></span>
-<span><span class="co">#&gt; [123] vipor_0.4.5               codetools_0.2-18         </span></span>
-<span><span class="co">#&gt; [125] MASS_7.3-57               boot_1.3-28              </span></span>
-<span><span class="co">#&gt; [127] assertthat_0.2.1          rhdf5_2.40.0             </span></span>
-<span><span class="co">#&gt; [129] rprojroot_2.0.3           rjson_0.2.21             </span></span>
-<span><span class="co">#&gt; [131] withr_2.5.0               multcomp_1.4-23          </span></span>
-<span><span class="co">#&gt; [133] GenomeInfoDbData_1.2.8    parallel_4.2.1           </span></span>
-<span><span class="co">#&gt; [135] grid_4.2.1                beachmat_2.12.0          </span></span>
-<span><span class="co">#&gt; [137] rmarkdown_2.20            DelayedMatrixStats_1.18.2</span></span>
-<span><span class="co">#&gt; [139] ggbeeswarm_0.6.0          interp_1.1-3</span></span></code></pre></div>
+<span><span class="co">#&gt;   [1] RcppAnnoy_0.0.22          splines_4.4.1            </span></span>
+<span><span class="co">#&gt;   [3] tibble_3.2.1              R.oo_1.26.0              </span></span>
+<span><span class="co">#&gt;   [5] polyclip_1.10-7           lifecycle_1.0.4          </span></span>
+<span><span class="co">#&gt;   [7] edgeR_4.2.1               lattice_0.22-6           </span></span>
+<span><span class="co">#&gt;   [9] MASS_7.3-61               magrittr_2.0.3           </span></span>
+<span><span class="co">#&gt;  [11] limma_3.60.4              sass_0.4.9               </span></span>
+<span><span class="co">#&gt;  [13] rmarkdown_2.28            jquerylib_0.1.4          </span></span>
+<span><span class="co">#&gt;  [15] yaml_2.3.10               sp_2.1-4                 </span></span>
+<span><span class="co">#&gt;  [17] rgeos_0.6-4               multcomp_1.4-26          </span></span>
+<span><span class="co">#&gt;  [19] abind_1.4-5               zlibbioc_1.50.0          </span></span>
+<span><span class="co">#&gt;  [21] purrr_1.0.2               R.utils_2.12.3           </span></span>
+<span><span class="co">#&gt;  [23] Metrics_0.1.4             TH.data_1.1-2            </span></span>
+<span><span class="co">#&gt;  [25] sandwich_3.1-0            GenomeInfoDbData_1.2.12  </span></span>
+<span><span class="co">#&gt;  [27] ggrepel_0.9.6             irlba_2.3.5.1            </span></span>
+<span><span class="co">#&gt;  [29] spatstat.utils_3.1-0      spatstat.random_3.3-1    </span></span>
+<span><span class="co">#&gt;  [31] dqrng_0.4.1               pkgdown_2.1.0            </span></span>
+<span><span class="co">#&gt;  [33] DelayedMatrixStats_1.26.0 codetools_0.2-20         </span></span>
+<span><span class="co">#&gt;  [35] DropletUtils_1.24.0       coin_1.4-3               </span></span>
+<span><span class="co">#&gt;  [37] DelayedArray_0.30.1       alphahull_2.5            </span></span>
+<span><span class="co">#&gt;  [39] tidyselect_1.2.1          UCSC.utils_1.0.0         </span></span>
+<span><span class="co">#&gt;  [41] farver_2.1.2              ScaledMatrix_1.12.0      </span></span>
+<span><span class="co">#&gt;  [43] viridis_0.6.5             sgeostat_1.0-27          </span></span>
+<span><span class="co">#&gt;  [45] jsonlite_1.8.8            BiocNeighbors_1.22.0     </span></span>
+<span><span class="co">#&gt;  [47] survival_3.7-0            systemfonts_1.1.0        </span></span>
+<span><span class="co">#&gt;  [49] tools_4.4.1               ragg_1.3.3               </span></span>
+<span><span class="co">#&gt;  [51] Rcpp_1.0.13               glue_1.7.0               </span></span>
+<span><span class="co">#&gt;  [53] shotGroups_0.8.2          gridExtra_2.3            </span></span>
+<span><span class="co">#&gt;  [55] SparseArray_1.4.8         xfun_0.47                </span></span>
+<span><span class="co">#&gt;  [57] dplyr_1.1.4               HDF5Array_1.32.1         </span></span>
+<span><span class="co">#&gt;  [59] withr_3.0.1               BiocManager_1.30.25      </span></span>
+<span><span class="co">#&gt;  [61] fastmap_1.2.0             boot_1.3-31              </span></span>
+<span><span class="co">#&gt;  [63] rhdf5filters_1.16.0       fansi_1.0.6              </span></span>
+<span><span class="co">#&gt;  [65] entropy_1.3.1             digest_0.6.37            </span></span>
+<span><span class="co">#&gt;  [67] rsvd_1.0.5                R6_2.5.1                 </span></span>
+<span><span class="co">#&gt;  [69] textshaping_0.4.0         colorspace_2.1-1         </span></span>
+<span><span class="co">#&gt;  [71] spatstat.data_3.1-2       R.methodsS3_1.8.2        </span></span>
+<span><span class="co">#&gt;  [73] utf8_1.2.4                generics_0.1.3           </span></span>
+<span><span class="co">#&gt;  [75] data.table_1.16.0         FNN_1.1.4                </span></span>
+<span><span class="co">#&gt;  [77] robustbase_0.99-4         httr_1.4.7               </span></span>
+<span><span class="co">#&gt;  [79] htmlwidgets_1.6.4         S4Arrays_1.4.1           </span></span>
+<span><span class="co">#&gt;  [81] uwot_0.2.2                pkgconfig_2.0.3          </span></span>
+<span><span class="co">#&gt;  [83] gtable_0.3.5              modeltools_0.2-23        </span></span>
+<span><span class="co">#&gt;  [85] XVector_0.44.0            htmltools_0.5.8.1        </span></span>
+<span><span class="co">#&gt;  [87] bookdown_0.40             scales_1.3.0             </span></span>
+<span><span class="co">#&gt;  [89] spatstat.univar_3.0-1     splancs_2.01-45          </span></span>
+<span><span class="co">#&gt;  [91] knitr_1.48                rstudioapi_0.16.0        </span></span>
+<span><span class="co">#&gt;  [93] reshape2_1.4.4            rjson_0.2.22             </span></span>
+<span><span class="co">#&gt;  [95] cachem_1.1.0              zoo_1.8-12               </span></span>
+<span><span class="co">#&gt;  [97] rhdf5_2.48.0              stringr_1.5.1            </span></span>
+<span><span class="co">#&gt;  [99] KernSmooth_2.23-24        parallel_4.4.1           </span></span>
+<span><span class="co">#&gt; [101] vipor_0.4.7               libcoin_1.0-10           </span></span>
+<span><span class="co">#&gt; [103] foreign_0.8-87            desc_1.4.3               </span></span>
+<span><span class="co">#&gt; [105] pillar_1.9.0              grid_4.4.1               </span></span>
+<span><span class="co">#&gt; [107] proxyC_0.4.1              vctrs_0.6.5              </span></span>
+<span><span class="co">#&gt; [109] BiocSingular_1.20.0       beachmat_2.20.0          </span></span>
+<span><span class="co">#&gt; [111] beeswarm_0.4.0            evaluate_0.24.0          </span></span>
+<span><span class="co">#&gt; [113] maptools_1.1-8            magick_2.8.4             </span></span>
+<span><span class="co">#&gt; [115] mvtnorm_1.3-1             cli_3.6.3                </span></span>
+<span><span class="co">#&gt; [117] locfit_1.5-9.10           compiler_4.4.1           </span></span>
+<span><span class="co">#&gt; [119] rlang_1.1.4               crayon_1.5.3             </span></span>
+<span><span class="co">#&gt; [121] labeling_0.4.3            interp_1.1-6             </span></span>
+<span><span class="co">#&gt; [123] plyr_1.8.9                fs_1.6.4                 </span></span>
+<span><span class="co">#&gt; [125] ggbeeswarm_0.7.2          stringi_1.8.4            </span></span>
+<span><span class="co">#&gt; [127] viridisLite_0.4.2         deldir_2.0-4             </span></span>
+<span><span class="co">#&gt; [129] BiocParallel_1.38.0       munsell_0.5.1            </span></span>
+<span><span class="co">#&gt; [131] tiff_0.1-12               spatstat.geom_3.3-2      </span></span>
+<span><span class="co">#&gt; [133] CompQuadForm_1.4.3        Matrix_1.7-0             </span></span>
+<span><span class="co">#&gt; [135] sparseMatrixStats_1.16.0  Rhdf5lib_1.26.0          </span></span>
+<span><span class="co">#&gt; [137] statmod_1.5.0             highr_0.11               </span></span>
+<span><span class="co">#&gt; [139] igraph_2.0.3              RcppParallel_5.1.9       </span></span>
+<span><span class="co">#&gt; [141] bslib_0.8.0               DEoptimR_1.1-3</span></span></code></pre></div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
@@ -1361,16 +1287,16 @@ visualise the baseline metrics.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>
