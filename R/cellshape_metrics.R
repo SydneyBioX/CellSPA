@@ -31,7 +31,7 @@ ashape2poly <- function(ashape){
 
 
 
-ashape_to_poly2 <- function(coord, alpha_var_range = 1:100){
+ashape_to_poly2 <- function(coord, alpha_var_range = 1:1000){
 
 
     for (alpha_var in alpha_var_range){
