@@ -351,7 +351,7 @@ readSimpleSeg <- function(spe, mask, img_id = "imageID", cell_id = "cell_id",
 
 
 
-#' Preprocessing the the spatial experiment data for SimpleSeg output (per sample).
+#' Preprocessing the the spatial experiment data for cell-level expression matrix with mask output.
 #'
 #'
 #' @param cell_mat A gene by cell matrix indicates the segmented cell expression.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/readMethods.R
 \name{readMatrixMask_per_sample}
 \alias{readMatrixMask_per_sample}
-\title{Preprocessing the the spatial experiment data for SimpleSeg output (per sample).}
+\title{Preprocessing the the spatial experiment data for cell-level expression matrix with mask output.}
 \usage{
 readMatrixMask_per_sample(
   cell_mat,
@@ -24,5 +24,5 @@ readMatrixMask_per_sample(
 \item{method_name}{A string indicates the method name of the cell segmentation.}
 }
 \description{
-Preprocessing the the spatial experiment data for SimpleSeg output (per sample).
+Preprocessing the the spatial experiment data for cell-level expression matrix with mask output.
 }
