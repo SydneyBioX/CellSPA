@@ -282,3 +282,110 @@ readVizgen <- function(data_dir,
 
 }
 
+
+
+
+
+#' Preprocessing the the spatial experiment data for SimpleSeg output (per sample).
+#'
+#'
+#' @param spe A Spatial Experiment object for only one image ID.
+#' @param mask The mask results from simpleSeg.
+#' @param method_name A string indicates the method name of the cell segmentation.
+#' @param cell_id A string indicates the cell ID column in SpatialExperiment object.
+#' @importFrom SummarizedExperiment colData
+#' @export
+
+readSimpleSeg_per_sample <- function(spe, mask, method_name = "SimpleSeg", cell_id = "cell_id") {
+    spe <- .initialise_CellSPA_list(spe)
+    spe <- .add_dataset_metrics(spe)
+
+    mask_output <- reshape2::melt(mask)
+
+    colnames(mask_output) <- c("coord_x", "coord_y", cell_id)
+    mask_output <- mask_output[mask_output[, cell_id] %in% colData(spe)[, cell_id], ]
+
+    spe@metadata$CellSegOutput <- mask_output
+
+    if (!all(colData(spe)[, cell_id] %in% spe@metadata$CellSegOutput[, cell_id])) {
+        warning("There are cells that are not in the tiff file,\n please check your tiff file")
+        spe <- spe[, colData(spe)[, cell_id] %in% spe@metadata$CellSegOutput[, cell_id]]
+    }
+    spe <- .cal_baseline(spe)
+    spe@metadata$CellSPA$method <- method_name
+    return(spe)
+}
+
+#' Preprocessing the the spatial experiment data for SimpleSeg output.
+#'
+#'
+#' @param spe A Spatial Experiment object for multiple image ID
+#' @param mask The mask results from simpleSeg
+#' @param img_id A string indicates the image ID column in SpatialExperiment object.
+#' @param cell_id A string indicates the cell ID column in SpatialExperiment object.
+#' @param use_BPPARAM BiocParallelParam instance.
+#' @param method_name A string indicates the method name of the cell segmentation.
+#' @param verbose A logical value indicates whether to print out running messages.
+#' @importFrom SummarizedExperiment colData
+#' @export
+
+readSimpleSeg <- function(spe, mask, img_id = "imageID", cell_id = "cell_id",
+                          use_BPPARAM = BiocParallel::SerialParam(),
+                          method_name = "SimpleSeg",
+                          verbose = TRUE) {
+
+    if (verbose) {
+        BiocParallel::bpprogressbar(use_BPPARAM) <- TRUE
+    }
+
+    spe_list <- BiocParallel::bplapply(names(mask), function(x) {
+        spe_subset <- spe[, colData(spe)[, img_id] %in% x]
+        mask_output <- mask[[x]]@.Data
+        spe_subset <- readSimpleSeg_per_sample(spe_subset, mask_output, method_name = method_name, cell_id = cell_id)
+        return(spe_subset)
+    }, BPPARAM = use_BPPARAM)
+    return(spe_list)
+}
+
+
+
+
+
+#' Preprocessing the the spatial experiment data for SimpleSeg output (per sample).
+#'
+#'
+#' @param cell_mat A gene by cell matrix indicates the segmented cell expression.
+#' @param cell_coord A matrix with 3 column indicates the x_coord, y_coord and cell_id of each cell in `cell_mat`.
+#' @param cell_id A vector indicates the cell_id for the columns of `cell_mat`.
+#' @param mask The mask results from cell segmentiation method
+#' @param method_name A string indicates the method name of the cell segmentation.
+#' @importFrom SummarizedExperiment colData
+#' @export
+
+readMatrixMask_per_sample <- function(cell_mat, cell_coord, cell_id, mask, method_name = "SimpleSeg") {
+
+
+    spe <- SpatialExperiment(assay = list(counts = cell_mat),
+                             spatialCoords = cell_coord)
+    spe$cell_id <- cell_id
+    spe <- .initialise_CellSPA_list(spe)
+    spe <- .add_dataset_metrics(spe)
+
+    mask_output <- reshape2::melt(mask)
+
+    colnames(mask_output) <- c("coord_x", "coord_y", "cell_id")
+    mask_output <- mask_output[mask_output[, "cell_id"] %in% colData(spe)[, "cell_id"], ]
+
+    spe@metadata$CellSegOutput <- mask_output
+
+    if (!all(colData(spe)[, "cell_id"] %in% spe@metadata$CellSegOutput[, "cell_id"])) {
+        warning("There are cells that are not in the tiff file,\n please check your tiff file")
+        spe <- spe[, colData(spe)[, "cell_id"] %in% spe@metadata$CellSegOutput[, "cell_id"]]
+    }
+    spe <- .cal_baseline(spe)
+    spe@metadata$CellSPA$method <- method_name
+    return(spe)
+}
+
+
+

@@ -5,6 +5,7 @@
 #' @param qc_range A list vector with two elements indicating
 #' the range of the total transciprts of the cells to keep.
 #' @param verbose A logical value indicates whether to print out running messages.
+#' @param cell_id A string indicates the cell ID column in SpatialExperiment object.
 #' @param seed A numeric indicates the seed to be set
 #' @importFrom SummarizedExperiment colData
 #' @return A SpatialExperiment object
@@ -15,6 +16,7 @@ processingSPE <- function(spe,
                           qc_range = list(total_transciprts = c(20, 2000),
                                           total_genes = c(20, Inf)),
                           verbose = TRUE,
+                          cell_id = "cell_id",
                           seed = 2023) {
 
     if (!all(names(qc_range) %in% colnames(colData(spe)))) {
@@ -28,9 +30,11 @@ processingSPE <- function(spe,
     }
 
     tif_output <- spe@metadata$CellSegOutput
-    spe@metadata$CellSegOutput <- tif_output[tif_output$cell_id %in% spe$cell_id, ]
+    spe@metadata$CellSegOutput <- tif_output[tif_output[, cell_id] %in% colData(spe)[, cell_id], ]
 
-
+    spe$cell_id <- colData(spe)[, cell_id]
+    tif_output$cell_id <- tif_output[, cell_id]
+    spe@metadata$CellSegOutput <- tif_output
     spe <- scater::logNormCounts(spe)
     set.seed(seed)
     spe <- scater::runPCA(spe)

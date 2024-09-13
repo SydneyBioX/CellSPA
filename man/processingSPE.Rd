@@ -8,6 +8,7 @@ processingSPE(
   spe,
   qc_range = list(total_transciprts = c(20, 2000), total_genes = c(20, Inf)),
   verbose = TRUE,
+  cell_id = "cell_id",
   seed = 2023
 )
 }
@@ -18,6 +19,8 @@ processingSPE(
 the range of the total transciprts of the cells to keep.}
 
 \item{verbose}{A logical value indicates whether to print out running messages.}
+
+\item{cell_id}{A string indicates the cell ID column in SpatialExperiment object.}
 
 \item{seed}{A numeric indicates the seed to be set}
 }
