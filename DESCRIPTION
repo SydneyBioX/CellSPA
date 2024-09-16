@@ -36,6 +36,7 @@ Imports:
     shotGroups,
     sp,
     sf,
+    spatstat,
     spatstat.geom,
     entropy,
     data.table,

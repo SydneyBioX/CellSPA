@@ -70,52 +70,28 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">CellSPA</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jrnold.github.io/ggthemes/" class="external-link">ggthemes</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://bioconductor.org/packages/scater/" class="external-link">scater</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SingleCellExperiment</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/drighelli/SpatialExperiment" class="external-link">SpatialExperiment</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html" class="external-link">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="read-bidcell-output">Read BIDCell output<a class="anchor" aria-label="anchor" href="#read-bidcell-output"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/BIDCell_csv_output"</span>, package <span class="op">=</span> <span class="st">"CellSPA"</span><span class="op">)</span></span>
 <span><span class="va">data_dir</span></span>
-<span><span class="co">#&gt; [1] "/dskh/nobackup/yingxinl/tmp/Rtmp9613Vz/temp_libpathfb143446f6d00/CellSPA/extdata/BIDCell_csv_output"</span></span>
-<span><span class="va">tiff_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/BIDCell_output_subset.tif"</span>, package <span class="op">=</span> <span class="st">"CellSPA"</span><span class="op">)</span></span>
-<span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/readBIDCell.html">readBIDCell</a></span><span class="op">(</span><span class="va">data_dir</span>,</span>
-<span>                   tiff_path <span class="op">=</span> <span class="va">tiff_path</span>,</span>
-<span>                   method_name <span class="op">=</span> <span class="st">"BIDCell"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<span><span class="co">#&gt; [1] "/dskh/nobackup/yingxinl/tmp/RtmpB40XFr/temp_libpath7f47d5296819c/CellSPA/extdata/BIDCell_csv_output"</span></span>
+<span><span class="va">tiff_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/BIDCell_output_subset.tif"</span>, package <span class="op">=</span> <span class="st">"CellSPA"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/processingSPE.html">processingSPE</a></span><span class="op">(</span><span class="va">spe</span>,</span>
 <span>                     qc_range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>total_transciprts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">2000</span><span class="op">)</span>,</span>
 <span>                                     total_genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="cn">Inf</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># subset a set of cells for illustration</span></span>
-<span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu">CellSPA</span><span class="fu">::</span><span class="fu"><a href="../reference/subset.html">subset</a></span><span class="op">(</span><span class="va">spe</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">500</span><span class="op">)</span></span>
-<span><span class="va">spe</span></span>
-<span><span class="co">#&gt; class: SpatialExperiment </span></span>
-<span><span class="co">#&gt; dim: 313 500 </span></span>
-<span><span class="co">#&gt; metadata(2): CellSPA CellSegOutput</span></span>
-<span><span class="co">#&gt; assays(2): counts logcounts</span></span>
-<span><span class="co">#&gt; rownames(313): SEC11C DAPK3 ... CD1C PDCD1</span></span>
-<span><span class="co">#&gt; rowData names(2): total_cells meanExprsPct_cells</span></span>
-<span><span class="co">#&gt; colnames(500): Cell_27210 Cell_27211 ... Cell_27715 Cell_27716</span></span>
-<span><span class="co">#&gt; colData names(12): cell_id pixel_size ... total_transciprts sizeFactor</span></span>
-<span><span class="co">#&gt; reducedDimNames(2): PCA UMAP</span></span>
-<span><span class="co">#&gt; mainExpName: NULL</span></span>
-<span><span class="co">#&gt; altExpNames(0):</span></span>
-<span><span class="co">#&gt; spatialCoords names(2) : cell_centroid_x cell_centroid_y</span></span>
-<span><span class="co">#&gt; imgData names(1): sample_id</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#subset a set of cells for illustration</span></span>
+<span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu">CellSPA</span><span class="fu">::</span><span class="fu"><a href="../reference/subset.html">subset</a></span><span class="op">(</span><span class="va">spe</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">500</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="baseline-metrics">Baseline metrics<a class="anchor" aria-label="anchor" href="#baseline-metrics"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generatePolygon.html">generatePolygon</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generatePolygon.html">generatePolygon</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
 <span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calBaselineAllMetrics.html">calBaselineAllMetrics</a></span><span class="op">(</span><span class="va">spe</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Metrics to run:  total_transciprts, total_genes, total_cells, meanExprsPct_cells"</span></span>
@@ -139,7 +115,7 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [1] "Calculating circularity"</span></span>
 <span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">rowData</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">rowData</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; DataFrame with 6 rows and 2 columns</span></span>
 <span><span class="co">#&gt;         total_cells meanExprsPct_cells</span></span>
 <span><span class="co">#&gt;           &lt;integer&gt;          &lt;numeric&gt;</span></span>
@@ -149,16 +125,16 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; NKG7             16              0.032</span></span>
 <span><span class="co">#&gt; RAPGEF3          69              0.138</span></span>
 <span><span class="co">#&gt; PPARG            93              0.186</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; DataFrame with 6 rows and 20 columns</span></span>
 <span><span class="co">#&gt;              cell_id pixel_size eccentricity cell_type  spearman</span></span>
 <span><span class="co">#&gt;            &lt;numeric&gt;  &lt;numeric&gt;    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210     27210         92     0.727273         7  0.578500</span></span>
-<span><span class="co">#&gt; Cell_27211     27211         56     0.433962         6  0.408182</span></span>
-<span><span class="co">#&gt; Cell_27212     27212        181     0.928000         7  0.569310</span></span>
-<span><span class="co">#&gt; Cell_27213     27213        115     0.923077         7  0.474430</span></span>
-<span><span class="co">#&gt; Cell_27214     27214        122     0.336957         7  0.538882</span></span>
-<span><span class="co">#&gt; Cell_27215     27215        153     0.839744         7  0.546259</span></span>
+<span><span class="co">#&gt; Cell_27210     27210         92     0.808957         7  0.578500</span></span>
+<span><span class="co">#&gt; Cell_27211     27211         56         -Inf         6  0.408182</span></span>
+<span><span class="co">#&gt; Cell_27212     27212        181     0.904051         7  0.569310</span></span>
+<span><span class="co">#&gt; Cell_27213     27213        115     0.724503         7  0.474430</span></span>
+<span><span class="co">#&gt; Cell_27214     27214        122     0.280000         7  0.538882</span></span>
+<span><span class="co">#&gt; Cell_27215     27215        153     0.694516         7  0.546259</span></span>
 <span><span class="co">#&gt;            cell_type_atlas total_reads total_genes     slide   sample_id</span></span>
 <span><span class="co">#&gt;                  &lt;numeric&gt;   &lt;numeric&gt;   &lt;integer&gt; &lt;integer&gt; &lt;character&gt;</span></span>
 <span><span class="co">#&gt; Cell_27210               5         265          79         1    sample01</span></span>
@@ -177,12 +153,12 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; Cell_27215               259   0.979502       153   0.839744    0.358405</span></span>
 <span><span class="co">#&gt;            sphericity  solidity convexity circularity   density</span></span>
 <span><span class="co">#&gt;             &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210   0.674331  0.949367  0.971781    0.839202   2.88043</span></span>
-<span><span class="co">#&gt; Cell_27211   0.380391  0.847619  0.970686    0.579024   1.32143</span></span>
-<span><span class="co">#&gt; Cell_27212   0.626272  0.883905  0.950348    0.793084   2.22099</span></span>
-<span><span class="co">#&gt; Cell_27213   0.561809  0.840164  0.961928    0.686686   2.51304</span></span>
-<span><span class="co">#&gt; Cell_27214   0.276051  0.731293  0.907927    0.412575   1.40984</span></span>
-<span><span class="co">#&gt; Cell_27215   0.469189  0.615385  0.801868    0.557402   1.69281</span></span></code></pre></div>
+<span><span class="co">#&gt; Cell_27210   0.583612  0.949367  0.971781    0.839202   2.88043</span></span>
+<span><span class="co">#&gt; Cell_27211   0.499965  0.847619  0.970686    0.579024   1.32143</span></span>
+<span><span class="co">#&gt; Cell_27212   0.680052  0.883905  0.950348    0.793084   2.22099</span></span>
+<span><span class="co">#&gt; Cell_27213   0.619852  0.840164  0.961928    0.686686   2.51304</span></span>
+<span><span class="co">#&gt; Cell_27214   0.336094  0.731293  0.907927    0.412575   1.40984</span></span>
+<span><span class="co">#&gt; Cell_27215   0.659214  0.615385  0.801868    0.557402   1.69281</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="expression-similarity">Expression similarity<a class="anchor" aria-label="anchor" href="#expression-similarity"></a>
@@ -190,7 +166,7 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <div class="section level3">
 <h3 id="processing-reference">Processing reference<a class="anchor" aria-label="anchor" href="#processing-reference"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sce_ref_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/sce_FFPE_full.rds"</span>, </span>
 <span>                            package <span class="op">=</span> <span class="st">"CellSPA"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sce_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/processingRef.html">processingRef</a></span><span class="op">(</span><span class="va">sce_ref_full</span>, </span>
@@ -212,23 +188,23 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <div class="section level3">
 <h3 id="calculating-expression-similarity">Calculating expression similarity<a class="anchor" aria-label="anchor" href="#calculating-expression-similarity"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calExpressionCorrelation.html">calExpressionCorrelation</a></span><span class="op">(</span><span class="va">spe</span>, </span>
 <span>                                <span class="va">sce_ref</span>,</span>
 <span>                                ref_celltype <span class="op">=</span> <span class="va">sce_ref</span><span class="op">$</span><span class="va">celltype</span>,</span>
 <span>                                method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pearson"</span>, <span class="st">"cosine"</span><span class="op">)</span>,</span>
 <span>                                spe_exprs_values <span class="op">=</span> <span class="st">"logcounts"</span>,</span>
 <span>                                ref_exprs_values <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; DataFrame with 6 rows and 24 columns</span></span>
 <span><span class="co">#&gt;              cell_id pixel_size eccentricity cell_type  spearman</span></span>
 <span><span class="co">#&gt;            &lt;numeric&gt;  &lt;numeric&gt;    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210     27210         92     0.727273         7  0.578500</span></span>
-<span><span class="co">#&gt; Cell_27211     27211         56     0.433962         6  0.408182</span></span>
-<span><span class="co">#&gt; Cell_27212     27212        181     0.928000         7  0.569310</span></span>
-<span><span class="co">#&gt; Cell_27213     27213        115     0.923077         7  0.474430</span></span>
-<span><span class="co">#&gt; Cell_27214     27214        122     0.336957         7  0.538882</span></span>
-<span><span class="co">#&gt; Cell_27215     27215        153     0.839744         7  0.546259</span></span>
+<span><span class="co">#&gt; Cell_27210     27210         92     0.808957         7  0.578500</span></span>
+<span><span class="co">#&gt; Cell_27211     27211         56         -Inf         6  0.408182</span></span>
+<span><span class="co">#&gt; Cell_27212     27212        181     0.904051         7  0.569310</span></span>
+<span><span class="co">#&gt; Cell_27213     27213        115     0.724503         7  0.474430</span></span>
+<span><span class="co">#&gt; Cell_27214     27214        122     0.280000         7  0.538882</span></span>
+<span><span class="co">#&gt; Cell_27215     27215        153     0.694516         7  0.546259</span></span>
 <span><span class="co">#&gt;            cell_type_atlas total_reads total_genes     slide   sample_id</span></span>
 <span><span class="co">#&gt;                  &lt;numeric&gt;   &lt;numeric&gt;   &lt;integer&gt; &lt;integer&gt; &lt;character&gt;</span></span>
 <span><span class="co">#&gt; Cell_27210               5         265          79         1    sample01</span></span>
@@ -247,12 +223,12 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; Cell_27215               259   0.979502       153   0.839744    0.358405</span></span>
 <span><span class="co">#&gt;            sphericity  solidity convexity circularity   density</span></span>
 <span><span class="co">#&gt;             &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210   0.674331  0.949367  0.971781    0.839202   2.88043</span></span>
-<span><span class="co">#&gt; Cell_27211   0.380391  0.847619  0.970686    0.579024   1.32143</span></span>
-<span><span class="co">#&gt; Cell_27212   0.626272  0.883905  0.950348    0.793084   2.22099</span></span>
-<span><span class="co">#&gt; Cell_27213   0.561809  0.840164  0.961928    0.686686   2.51304</span></span>
-<span><span class="co">#&gt; Cell_27214   0.276051  0.731293  0.907927    0.412575   1.40984</span></span>
-<span><span class="co">#&gt; Cell_27215   0.469189  0.615385  0.801868    0.557402   1.69281</span></span>
+<span><span class="co">#&gt; Cell_27210   0.583612  0.949367  0.971781    0.839202   2.88043</span></span>
+<span><span class="co">#&gt; Cell_27211   0.499965  0.847619  0.970686    0.579024   1.32143</span></span>
+<span><span class="co">#&gt; Cell_27212   0.680052  0.883905  0.950348    0.793084   2.22099</span></span>
+<span><span class="co">#&gt; Cell_27213   0.619852  0.840164  0.961928    0.686686   2.51304</span></span>
+<span><span class="co">#&gt; Cell_27214   0.336094  0.731293  0.907927    0.412575   1.40984</span></span>
+<span><span class="co">#&gt; Cell_27215   0.659214  0.615385  0.801868    0.557402   1.69281</span></span>
 <span><span class="co">#&gt;            mean_cor_correlation mean_celltype_correlation mean_cor_cosine</span></span>
 <span><span class="co">#&gt;                       &lt;numeric&gt;                  &lt;factor&gt;       &lt;numeric&gt;</span></span>
 <span><span class="co">#&gt; Cell_27210             0.692426         CRABP2+ Malignant        0.753021</span></span>
@@ -269,23 +245,23 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; Cell_27213    KRT15+ Myoepi    </span></span>
 <span><span class="co">#&gt; Cell_27214    CRABP2+ Malignant</span></span>
 <span><span class="co">#&gt; Cell_27215    ECM1+ Malignant</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calExpressionCorrelation.html">calExpressionCorrelation</a></span><span class="op">(</span><span class="va">spe</span>, </span>
 <span>                                <span class="va">sce_ref</span>,</span>
 <span>                                ref_celltype <span class="op">=</span> <span class="va">sce_ref</span><span class="op">$</span><span class="va">celltype</span>,</span>
 <span>                                method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pearson"</span>, <span class="st">"cosine"</span><span class="op">)</span>,</span>
 <span>                                spe_exprs_values <span class="op">=</span> <span class="st">"logcounts"</span>,</span>
 <span>                                ref_exprs_values <span class="op">=</span> <span class="st">"prop_detected"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; DataFrame with 6 rows and 28 columns</span></span>
 <span><span class="co">#&gt;              cell_id pixel_size eccentricity cell_type  spearman</span></span>
 <span><span class="co">#&gt;            &lt;numeric&gt;  &lt;numeric&gt;    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210     27210         92     0.727273         7  0.578500</span></span>
-<span><span class="co">#&gt; Cell_27211     27211         56     0.433962         6  0.408182</span></span>
-<span><span class="co">#&gt; Cell_27212     27212        181     0.928000         7  0.569310</span></span>
-<span><span class="co">#&gt; Cell_27213     27213        115     0.923077         7  0.474430</span></span>
-<span><span class="co">#&gt; Cell_27214     27214        122     0.336957         7  0.538882</span></span>
-<span><span class="co">#&gt; Cell_27215     27215        153     0.839744         7  0.546259</span></span>
+<span><span class="co">#&gt; Cell_27210     27210         92     0.808957         7  0.578500</span></span>
+<span><span class="co">#&gt; Cell_27211     27211         56         -Inf         6  0.408182</span></span>
+<span><span class="co">#&gt; Cell_27212     27212        181     0.904051         7  0.569310</span></span>
+<span><span class="co">#&gt; Cell_27213     27213        115     0.724503         7  0.474430</span></span>
+<span><span class="co">#&gt; Cell_27214     27214        122     0.280000         7  0.538882</span></span>
+<span><span class="co">#&gt; Cell_27215     27215        153     0.694516         7  0.546259</span></span>
 <span><span class="co">#&gt;            cell_type_atlas total_reads total_genes     slide   sample_id</span></span>
 <span><span class="co">#&gt;                  &lt;numeric&gt;   &lt;numeric&gt;   &lt;integer&gt; &lt;integer&gt; &lt;character&gt;</span></span>
 <span><span class="co">#&gt; Cell_27210               5         265          79         1    sample01</span></span>
@@ -304,12 +280,12 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; Cell_27215               259   0.979502       153   0.839744    0.358405</span></span>
 <span><span class="co">#&gt;            sphericity  solidity convexity circularity   density</span></span>
 <span><span class="co">#&gt;             &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210   0.674331  0.949367  0.971781    0.839202   2.88043</span></span>
-<span><span class="co">#&gt; Cell_27211   0.380391  0.847619  0.970686    0.579024   1.32143</span></span>
-<span><span class="co">#&gt; Cell_27212   0.626272  0.883905  0.950348    0.793084   2.22099</span></span>
-<span><span class="co">#&gt; Cell_27213   0.561809  0.840164  0.961928    0.686686   2.51304</span></span>
-<span><span class="co">#&gt; Cell_27214   0.276051  0.731293  0.907927    0.412575   1.40984</span></span>
-<span><span class="co">#&gt; Cell_27215   0.469189  0.615385  0.801868    0.557402   1.69281</span></span>
+<span><span class="co">#&gt; Cell_27210   0.583612  0.949367  0.971781    0.839202   2.88043</span></span>
+<span><span class="co">#&gt; Cell_27211   0.499965  0.847619  0.970686    0.579024   1.32143</span></span>
+<span><span class="co">#&gt; Cell_27212   0.680052  0.883905  0.950348    0.793084   2.22099</span></span>
+<span><span class="co">#&gt; Cell_27213   0.619852  0.840164  0.961928    0.686686   2.51304</span></span>
+<span><span class="co">#&gt; Cell_27214   0.336094  0.731293  0.907927    0.412575   1.40984</span></span>
+<span><span class="co">#&gt; Cell_27215   0.659214  0.615385  0.801868    0.557402   1.69281</span></span>
 <span><span class="co">#&gt;            mean_cor_correlation mean_celltype_correlation mean_cor_cosine</span></span>
 <span><span class="co">#&gt;                       &lt;numeric&gt;                  &lt;factor&gt;       &lt;numeric&gt;</span></span>
 <span><span class="co">#&gt; Cell_27210             0.692426         CRABP2+ Malignant        0.753021</span></span>
@@ -342,7 +318,7 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; Cell_27213            KRT15+ Myoepi     </span></span>
 <span><span class="co">#&gt; Cell_27214            CRABP2+ Malignant </span></span>
 <span><span class="co">#&gt; Cell_27215            ECM1+ Malignant</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calAggExpressionCorrelation.html">calAggExpressionCorrelation</a></span><span class="op">(</span><span class="va">spe</span>,</span>
 <span>                                   celltype <span class="op">=</span> <span class="st">"mean_celltype_correlation"</span>,</span>
 <span>                                   sce_ref <span class="op">=</span> <span class="va">sce_ref</span>,</span>
@@ -361,7 +337,7 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt;          0.7726590          0.0000000          0.5861591          0.5302542 </span></span>
 <span><span class="co">#&gt;      KRT15+ Myoepi </span></span>
 <span><span class="co">#&gt;          0.6805255</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calAggExpressionCorrelation.html">calAggExpressionCorrelation</a></span><span class="op">(</span><span class="va">spe</span>,</span>
 <span>                                   celltype <span class="op">=</span> <span class="st">"mean_celltype_correlation"</span>,</span>
 <span>                                   sce_ref <span class="op">=</span> <span class="va">sce_ref</span>,</span>
@@ -384,7 +360,7 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <div class="section level3">
 <h3 id="calculate-marker-f1-purity">Calculate marker F1 purity<a class="anchor" aria-label="anchor" href="#calculate-marker-f1-purity"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Generate a positive marker list based on the reference data</span></span>
 <span><span class="va">positive_marker_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generateMarkerList.html">generateMarkerList</a></span><span class="op">(</span><span class="va">sce_ref</span>, type <span class="op">=</span> <span class="st">"positive"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "For the top 10% of genes, the overlap freq between cell types"</span></span>
@@ -648,21 +624,21 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt;  [9] "TRAC"   "IL2RG"  "CCR7"   "EGFL7"  "PTPRC"  "TYROBP" "VOPP1"  "ITM2C" </span></span>
 <span><span class="co">#&gt; [17] "SELL"   "TCF4"   "CD69"   "PRDM1"  "POSTN"  "CD4"    "CYTIP"  "PTGDS" </span></span>
 <span><span class="co">#&gt; [25] "SMAP2"  "FGL2"   "CPA3"   "LYZ"    "CD163"  "IL7R"   "PECAM1"</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calMarkerPurity.html">calMarkerPurity</a></span><span class="op">(</span><span class="va">spe</span>,</span>
 <span>                       celltype <span class="op">=</span> <span class="st">"mean_celltype_correlation"</span>,</span>
 <span>                       marker_list <span class="op">=</span> <span class="va">positive_marker_list</span>,</span>
 <span>                       marker_list_name <span class="op">=</span> <span class="st">"positive"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; DataFrame with 6 rows and 31 columns</span></span>
 <span><span class="co">#&gt;              cell_id pixel_size eccentricity cell_type  spearman</span></span>
 <span><span class="co">#&gt;            &lt;numeric&gt;  &lt;numeric&gt;    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210     27210         92     0.727273         7  0.578500</span></span>
-<span><span class="co">#&gt; Cell_27211     27211         56     0.433962         6  0.408182</span></span>
-<span><span class="co">#&gt; Cell_27212     27212        181     0.928000         7  0.569310</span></span>
-<span><span class="co">#&gt; Cell_27213     27213        115     0.923077         7  0.474430</span></span>
-<span><span class="co">#&gt; Cell_27214     27214        122     0.336957         7  0.538882</span></span>
-<span><span class="co">#&gt; Cell_27215     27215        153     0.839744         7  0.546259</span></span>
+<span><span class="co">#&gt; Cell_27210     27210         92     0.808957         7  0.578500</span></span>
+<span><span class="co">#&gt; Cell_27211     27211         56         -Inf         6  0.408182</span></span>
+<span><span class="co">#&gt; Cell_27212     27212        181     0.904051         7  0.569310</span></span>
+<span><span class="co">#&gt; Cell_27213     27213        115     0.724503         7  0.474430</span></span>
+<span><span class="co">#&gt; Cell_27214     27214        122     0.280000         7  0.538882</span></span>
+<span><span class="co">#&gt; Cell_27215     27215        153     0.694516         7  0.546259</span></span>
 <span><span class="co">#&gt;            cell_type_atlas total_reads total_genes     slide   sample_id</span></span>
 <span><span class="co">#&gt;                  &lt;numeric&gt;   &lt;numeric&gt;   &lt;integer&gt; &lt;integer&gt; &lt;character&gt;</span></span>
 <span><span class="co">#&gt; Cell_27210               5         265          79         1    sample01</span></span>
@@ -681,12 +657,12 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; Cell_27215               259   0.979502       153   0.839744    0.358405</span></span>
 <span><span class="co">#&gt;            sphericity  solidity convexity circularity   density</span></span>
 <span><span class="co">#&gt;             &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210   0.674331  0.949367  0.971781    0.839202   2.88043</span></span>
-<span><span class="co">#&gt; Cell_27211   0.380391  0.847619  0.970686    0.579024   1.32143</span></span>
-<span><span class="co">#&gt; Cell_27212   0.626272  0.883905  0.950348    0.793084   2.22099</span></span>
-<span><span class="co">#&gt; Cell_27213   0.561809  0.840164  0.961928    0.686686   2.51304</span></span>
-<span><span class="co">#&gt; Cell_27214   0.276051  0.731293  0.907927    0.412575   1.40984</span></span>
-<span><span class="co">#&gt; Cell_27215   0.469189  0.615385  0.801868    0.557402   1.69281</span></span>
+<span><span class="co">#&gt; Cell_27210   0.583612  0.949367  0.971781    0.839202   2.88043</span></span>
+<span><span class="co">#&gt; Cell_27211   0.499965  0.847619  0.970686    0.579024   1.32143</span></span>
+<span><span class="co">#&gt; Cell_27212   0.680052  0.883905  0.950348    0.793084   2.22099</span></span>
+<span><span class="co">#&gt; Cell_27213   0.619852  0.840164  0.961928    0.686686   2.51304</span></span>
+<span><span class="co">#&gt; Cell_27214   0.336094  0.731293  0.907927    0.412575   1.40984</span></span>
+<span><span class="co">#&gt; Cell_27215   0.659214  0.615385  0.801868    0.557402   1.69281</span></span>
 <span><span class="co">#&gt;            mean_cor_correlation mean_celltype_correlation mean_cor_cosine</span></span>
 <span><span class="co">#&gt;                       &lt;numeric&gt;                  &lt;factor&gt;       &lt;numeric&gt;</span></span>
 <span><span class="co">#&gt; Cell_27210             0.692426         CRABP2+ Malignant        0.753021</span></span>
@@ -727,21 +703,21 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; Cell_27213        0.181818</span></span>
 <span><span class="co">#&gt; Cell_27214        0.428571</span></span>
 <span><span class="co">#&gt; Cell_27215        0.454545</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calMarkerPurity.html">calMarkerPurity</a></span><span class="op">(</span><span class="va">spe</span>,</span>
 <span>                       celltype <span class="op">=</span> <span class="st">"mean_celltype_correlation"</span>,</span>
 <span>                       marker_list <span class="op">=</span> <span class="va">negative_marker_list</span>,</span>
 <span>                       marker_list_name <span class="op">=</span> <span class="st">"negative"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; DataFrame with 6 rows and 34 columns</span></span>
 <span><span class="co">#&gt;              cell_id pixel_size eccentricity cell_type  spearman</span></span>
 <span><span class="co">#&gt;            &lt;numeric&gt;  &lt;numeric&gt;    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210     27210         92     0.727273         7  0.578500</span></span>
-<span><span class="co">#&gt; Cell_27211     27211         56     0.433962         6  0.408182</span></span>
-<span><span class="co">#&gt; Cell_27212     27212        181     0.928000         7  0.569310</span></span>
-<span><span class="co">#&gt; Cell_27213     27213        115     0.923077         7  0.474430</span></span>
-<span><span class="co">#&gt; Cell_27214     27214        122     0.336957         7  0.538882</span></span>
-<span><span class="co">#&gt; Cell_27215     27215        153     0.839744         7  0.546259</span></span>
+<span><span class="co">#&gt; Cell_27210     27210         92     0.808957         7  0.578500</span></span>
+<span><span class="co">#&gt; Cell_27211     27211         56         -Inf         6  0.408182</span></span>
+<span><span class="co">#&gt; Cell_27212     27212        181     0.904051         7  0.569310</span></span>
+<span><span class="co">#&gt; Cell_27213     27213        115     0.724503         7  0.474430</span></span>
+<span><span class="co">#&gt; Cell_27214     27214        122     0.280000         7  0.538882</span></span>
+<span><span class="co">#&gt; Cell_27215     27215        153     0.694516         7  0.546259</span></span>
 <span><span class="co">#&gt;            cell_type_atlas total_reads total_genes     slide   sample_id</span></span>
 <span><span class="co">#&gt;                  &lt;numeric&gt;   &lt;numeric&gt;   &lt;integer&gt; &lt;integer&gt; &lt;character&gt;</span></span>
 <span><span class="co">#&gt; Cell_27210               5         265          79         1    sample01</span></span>
@@ -760,12 +736,12 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; Cell_27215               259   0.979502       153   0.839744    0.358405</span></span>
 <span><span class="co">#&gt;            sphericity  solidity convexity circularity   density</span></span>
 <span><span class="co">#&gt;             &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210   0.674331  0.949367  0.971781    0.839202   2.88043</span></span>
-<span><span class="co">#&gt; Cell_27211   0.380391  0.847619  0.970686    0.579024   1.32143</span></span>
-<span><span class="co">#&gt; Cell_27212   0.626272  0.883905  0.950348    0.793084   2.22099</span></span>
-<span><span class="co">#&gt; Cell_27213   0.561809  0.840164  0.961928    0.686686   2.51304</span></span>
-<span><span class="co">#&gt; Cell_27214   0.276051  0.731293  0.907927    0.412575   1.40984</span></span>
-<span><span class="co">#&gt; Cell_27215   0.469189  0.615385  0.801868    0.557402   1.69281</span></span>
+<span><span class="co">#&gt; Cell_27210   0.583612  0.949367  0.971781    0.839202   2.88043</span></span>
+<span><span class="co">#&gt; Cell_27211   0.499965  0.847619  0.970686    0.579024   1.32143</span></span>
+<span><span class="co">#&gt; Cell_27212   0.680052  0.883905  0.950348    0.793084   2.22099</span></span>
+<span><span class="co">#&gt; Cell_27213   0.619852  0.840164  0.961928    0.686686   2.51304</span></span>
+<span><span class="co">#&gt; Cell_27214   0.336094  0.731293  0.907927    0.412575   1.40984</span></span>
+<span><span class="co">#&gt; Cell_27215   0.659214  0.615385  0.801868    0.557402   1.69281</span></span>
 <span><span class="co">#&gt;            mean_cor_correlation mean_celltype_correlation mean_cor_cosine</span></span>
 <span><span class="co">#&gt;                       &lt;numeric&gt;                  &lt;factor&gt;       &lt;numeric&gt;</span></span>
 <span><span class="co">#&gt; Cell_27210             0.692426         CRABP2+ Malignant        0.753021</span></span>
@@ -810,22 +786,22 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <div class="section level3">
 <h3 id="calculate-marker-expressed-pct">Calculate marker expressed pct<a class="anchor" aria-label="anchor" href="#calculate-marker-expressed-pct"></a>
 </h3>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calMarkerPct.html">calMarkerPct</a></span><span class="op">(</span><span class="va">spe</span>,</span>
 <span>                    celltype <span class="op">=</span> <span class="st">"mean_celltype_correlation"</span>,</span>
 <span>                    marker_list <span class="op">=</span> <span class="va">positive_marker_list</span>,</span>
 <span>                    marker_list_name <span class="op">=</span> <span class="st">"positive"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; DataFrame with 6 rows and 35 columns</span></span>
 <span><span class="co">#&gt;              cell_id pixel_size eccentricity cell_type  spearman</span></span>
 <span><span class="co">#&gt;            &lt;numeric&gt;  &lt;numeric&gt;    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210     27210         92     0.727273         7  0.578500</span></span>
-<span><span class="co">#&gt; Cell_27211     27211         56     0.433962         6  0.408182</span></span>
-<span><span class="co">#&gt; Cell_27212     27212        181     0.928000         7  0.569310</span></span>
-<span><span class="co">#&gt; Cell_27213     27213        115     0.923077         7  0.474430</span></span>
-<span><span class="co">#&gt; Cell_27214     27214        122     0.336957         7  0.538882</span></span>
-<span><span class="co">#&gt; Cell_27215     27215        153     0.839744         7  0.546259</span></span>
+<span><span class="co">#&gt; Cell_27210     27210         92     0.808957         7  0.578500</span></span>
+<span><span class="co">#&gt; Cell_27211     27211         56         -Inf         6  0.408182</span></span>
+<span><span class="co">#&gt; Cell_27212     27212        181     0.904051         7  0.569310</span></span>
+<span><span class="co">#&gt; Cell_27213     27213        115     0.724503         7  0.474430</span></span>
+<span><span class="co">#&gt; Cell_27214     27214        122     0.280000         7  0.538882</span></span>
+<span><span class="co">#&gt; Cell_27215     27215        153     0.694516         7  0.546259</span></span>
 <span><span class="co">#&gt;            cell_type_atlas total_reads total_genes     slide   sample_id</span></span>
 <span><span class="co">#&gt;                  &lt;numeric&gt;   &lt;numeric&gt;   &lt;integer&gt; &lt;integer&gt; &lt;character&gt;</span></span>
 <span><span class="co">#&gt; Cell_27210               5         265          79         1    sample01</span></span>
@@ -844,12 +820,12 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; Cell_27215               259   0.979502       153   0.839744    0.358405</span></span>
 <span><span class="co">#&gt;            sphericity  solidity convexity circularity   density</span></span>
 <span><span class="co">#&gt;             &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210   0.674331  0.949367  0.971781    0.839202   2.88043</span></span>
-<span><span class="co">#&gt; Cell_27211   0.380391  0.847619  0.970686    0.579024   1.32143</span></span>
-<span><span class="co">#&gt; Cell_27212   0.626272  0.883905  0.950348    0.793084   2.22099</span></span>
-<span><span class="co">#&gt; Cell_27213   0.561809  0.840164  0.961928    0.686686   2.51304</span></span>
-<span><span class="co">#&gt; Cell_27214   0.276051  0.731293  0.907927    0.412575   1.40984</span></span>
-<span><span class="co">#&gt; Cell_27215   0.469189  0.615385  0.801868    0.557402   1.69281</span></span>
+<span><span class="co">#&gt; Cell_27210   0.583612  0.949367  0.971781    0.839202   2.88043</span></span>
+<span><span class="co">#&gt; Cell_27211   0.499965  0.847619  0.970686    0.579024   1.32143</span></span>
+<span><span class="co">#&gt; Cell_27212   0.680052  0.883905  0.950348    0.793084   2.22099</span></span>
+<span><span class="co">#&gt; Cell_27213   0.619852  0.840164  0.961928    0.686686   2.51304</span></span>
+<span><span class="co">#&gt; Cell_27214   0.336094  0.731293  0.907927    0.412575   1.40984</span></span>
+<span><span class="co">#&gt; Cell_27215   0.659214  0.615385  0.801868    0.557402   1.69281</span></span>
 <span><span class="co">#&gt;            mean_cor_correlation mean_celltype_correlation mean_cor_cosine</span></span>
 <span><span class="co">#&gt;                       &lt;numeric&gt;                  &lt;factor&gt;       &lt;numeric&gt;</span></span>
 <span><span class="co">#&gt; Cell_27210             0.692426         CRABP2+ Malignant        0.753021</span></span>
@@ -898,22 +874,22 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; Cell_27213          0.681818</span></span>
 <span><span class="co">#&gt; Cell_27214          1.000000</span></span>
 <span><span class="co">#&gt; Cell_27215          0.772727</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calMarkerPct.html">calMarkerPct</a></span><span class="op">(</span><span class="va">spe</span>,</span>
 <span>                    celltype <span class="op">=</span> <span class="st">"mean_celltype_correlation"</span>,</span>
 <span>                    marker_list <span class="op">=</span> <span class="va">negative_marker_list</span>,</span>
 <span>                    marker_list_name <span class="op">=</span> <span class="st">"negative"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; DataFrame with 6 rows and 36 columns</span></span>
 <span><span class="co">#&gt;              cell_id pixel_size eccentricity cell_type  spearman</span></span>
 <span><span class="co">#&gt;            &lt;numeric&gt;  &lt;numeric&gt;    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210     27210         92     0.727273         7  0.578500</span></span>
-<span><span class="co">#&gt; Cell_27211     27211         56     0.433962         6  0.408182</span></span>
-<span><span class="co">#&gt; Cell_27212     27212        181     0.928000         7  0.569310</span></span>
-<span><span class="co">#&gt; Cell_27213     27213        115     0.923077         7  0.474430</span></span>
-<span><span class="co">#&gt; Cell_27214     27214        122     0.336957         7  0.538882</span></span>
-<span><span class="co">#&gt; Cell_27215     27215        153     0.839744         7  0.546259</span></span>
+<span><span class="co">#&gt; Cell_27210     27210         92     0.808957         7  0.578500</span></span>
+<span><span class="co">#&gt; Cell_27211     27211         56         -Inf         6  0.408182</span></span>
+<span><span class="co">#&gt; Cell_27212     27212        181     0.904051         7  0.569310</span></span>
+<span><span class="co">#&gt; Cell_27213     27213        115     0.724503         7  0.474430</span></span>
+<span><span class="co">#&gt; Cell_27214     27214        122     0.280000         7  0.538882</span></span>
+<span><span class="co">#&gt; Cell_27215     27215        153     0.694516         7  0.546259</span></span>
 <span><span class="co">#&gt;            cell_type_atlas total_reads total_genes     slide   sample_id</span></span>
 <span><span class="co">#&gt;                  &lt;numeric&gt;   &lt;numeric&gt;   &lt;integer&gt; &lt;integer&gt; &lt;character&gt;</span></span>
 <span><span class="co">#&gt; Cell_27210               5         265          79         1    sample01</span></span>
@@ -932,12 +908,12 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; Cell_27215               259   0.979502       153   0.839744    0.358405</span></span>
 <span><span class="co">#&gt;            sphericity  solidity convexity circularity   density</span></span>
 <span><span class="co">#&gt;             &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;</span></span>
-<span><span class="co">#&gt; Cell_27210   0.674331  0.949367  0.971781    0.839202   2.88043</span></span>
-<span><span class="co">#&gt; Cell_27211   0.380391  0.847619  0.970686    0.579024   1.32143</span></span>
-<span><span class="co">#&gt; Cell_27212   0.626272  0.883905  0.950348    0.793084   2.22099</span></span>
-<span><span class="co">#&gt; Cell_27213   0.561809  0.840164  0.961928    0.686686   2.51304</span></span>
-<span><span class="co">#&gt; Cell_27214   0.276051  0.731293  0.907927    0.412575   1.40984</span></span>
-<span><span class="co">#&gt; Cell_27215   0.469189  0.615385  0.801868    0.557402   1.69281</span></span>
+<span><span class="co">#&gt; Cell_27210   0.583612  0.949367  0.971781    0.839202   2.88043</span></span>
+<span><span class="co">#&gt; Cell_27211   0.499965  0.847619  0.970686    0.579024   1.32143</span></span>
+<span><span class="co">#&gt; Cell_27212   0.680052  0.883905  0.950348    0.793084   2.22099</span></span>
+<span><span class="co">#&gt; Cell_27213   0.619852  0.840164  0.961928    0.686686   2.51304</span></span>
+<span><span class="co">#&gt; Cell_27214   0.336094  0.731293  0.907927    0.412575   1.40984</span></span>
+<span><span class="co">#&gt; Cell_27215   0.659214  0.615385  0.801868    0.557402   1.69281</span></span>
 <span><span class="co">#&gt;            mean_cor_correlation mean_celltype_correlation mean_cor_cosine</span></span>
 <span><span class="co">#&gt;                       &lt;numeric&gt;                  &lt;factor&gt;       &lt;numeric&gt;</span></span>
 <span><span class="co">#&gt; Cell_27210             0.692426         CRABP2+ Malignant        0.753021</span></span>
@@ -991,38 +967,38 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <div class="section level2">
 <h2 id="spatial-variation">Spatial Variation<a class="anchor" aria-label="anchor" href="#spatial-variation"></a>
 </h2>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calSpatialMetricsDiversity.html">calSpatialMetricsDiversity</a></span><span class="op">(</span><span class="va">spe</span>, </span>
 <span>                                  celltype <span class="op">=</span> <span class="st">"mean_celltype_correlation"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">spe</span><span class="op">@</span><span class="va">metadata</span><span class="op">$</span><span class="va">CellSPA</span><span class="op">$</span><span class="va">spatialMetricsDiversity</span><span class="op">$</span><span class="va">results</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_bin</span>, y <span class="op">=</span> <span class="va">y_bin</span>, fill <span class="op">=</span> <span class="va">`cellTypeProp_ECM1+ Malignant`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_tile</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>aspect.ratio <span class="op">=</span> <span class="fl">1</span>, </span>
-<span>          axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>          axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>          axis.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"ECM1+ Malignant %"</span><span class="op">)</span> </span></code></pre></div>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_bin</span>, y <span class="op">=</span> <span class="va">y_bin</span>, fill <span class="op">=</span> <span class="va">`cellTypeProp_ECM1+ Malignant`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_tile</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">scale_fill_viridis_c</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">theme</span><span class="op">(</span>aspect.ratio <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>          axis.text.x <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>          axis.text.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>          axis.ticks <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"ECM1+ Malignant %"</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="CellSPA_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">entropy</span>, y <span class="op">=</span> <span class="va">cv_total_transciprts</span>, </span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">entropy</span>, y <span class="op">=</span> <span class="va">cv_total_transciprts</span>, </span>
 <span>               color <span class="op">=</span> <span class="va">`cellTypeProp_ECM1+ Malignant`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_color_viridis_c</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>aspect.ratio <span class="op">=</span> <span class="fl">1</span>, </span>
-<span>          axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>          axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>          axis.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"ECM1+ Malignant %"</span><span class="op">)</span></span></code></pre></div>
+<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">scale_color_viridis_c</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">theme</span><span class="op">(</span>aspect.ratio <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>          axis.text.x <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>          axis.text.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>          axis.ticks <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"ECM1+ Malignant %"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CellSPA_files/figure-html/unnamed-chunk-17-2.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="neighbour-purity">Neighbour purity<a class="anchor" aria-label="anchor" href="#neighbour-purity"></a>
 </h2>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nn_celltype_pair</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B Cells"</span>, <span class="st">"CD4 T|CD8 T"</span><span class="op">)</span></span>
 <span><span class="va">neg_markers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"B Cells"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CD3C"</span>, <span class="st">"CD3E"</span>, <span class="st">"CD8A"</span><span class="op">)</span>,</span>
 <span>                    <span class="st">"CD4 T|CD8 T"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MS4A1"</span>, <span class="st">"CD79A"</span>, <span class="st">"CD79B"</span><span class="op">)</span><span class="op">)</span></span>
@@ -1054,15 +1030,15 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <div class="section level2">
 <h2 id="read-10x-output">Read 10x output<a class="anchor" aria-label="anchor" href="#read-10x-output"></a>
 </h2>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tenX_output_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/10x_output_subset"</span>, package <span class="op">=</span> <span class="st">"CellSPA"</span><span class="op">)</span></span>
 <span><span class="va">tenX_output_tif</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/10x_output_subset/10x_from_csv_subset.tif"</span>, package <span class="op">=</span> <span class="st">"CellSPA"</span><span class="op">)</span></span>
 <span><span class="va">spe_10x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/readXenium.html">readXenium</a></span><span class="op">(</span><span class="va">tenX_output_dir</span>,</span>
 <span>                      tiff_path <span class="op">=</span> <span class="va">tenX_output_tif</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">keep_idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SpatialExperiment/man/SpatialExperiment-methods.html" class="external-link">spatialCoords</a></span><span class="op">(</span><span class="va">spe_10x</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SpatialExperiment/man/SpatialExperiment-methods.html" class="external-link">spatialCoords</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">&amp;</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/SpatialExperiment/man/SpatialExperiment-methods.html" class="external-link">spatialCoords</a></span><span class="op">(</span><span class="va">spe_10x</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SpatialExperiment/man/SpatialExperiment-methods.html" class="external-link">spatialCoords</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">keep_idx</span> <span class="op">&lt;-</span> <span class="fu">spatialCoords</span><span class="op">(</span><span class="va">spe_10x</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fu">spatialCoords</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">&amp;</span></span>
+<span>    <span class="fu">spatialCoords</span><span class="op">(</span><span class="va">spe_10x</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="fu">spatialCoords</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">spe_10x</span> <span class="op">&lt;-</span> <span class="fu">CellSPA</span><span class="fu">::</span><span class="fu"><a href="../reference/subset.html">subset</a></span><span class="op">(</span><span class="va">spe_10x</span>, <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">keep_idx</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">spe_10x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/processingSPE.html">processingSPE</a></span><span class="op">(</span><span class="va">spe_10x</span>,</span>
@@ -1084,7 +1060,7 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 <span><span class="co">#&gt; spatialCoords names(2) : x_centroid y_centroid</span></span>
 <span><span class="co">#&gt; imgData names(1): sample_id</span></span></code></pre></div>
 <p>Run CellSPA with a wrapper function <code>CellSPA</code>.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spe_10x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CellSPA.html">CellSPA</a></span><span class="op">(</span><span class="va">spe_10x</span>,</span>
 <span>                   spe_celltype <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>                   sce_ref <span class="op">=</span> <span class="va">sce_ref</span>,</span>
@@ -1141,21 +1117,21 @@ Australia<br><div class="hidden name"><code>CellSPA.Rmd</code></div>
 </h3>
 <p>We can use <code>plotColData</code> in <code>scater</code> package to
 visualise the baseline metrics.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">scater</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/scater/man/plotColData.html" class="external-link">plotColData</a></span><span class="op">(</span><span class="va">spe</span>, <span class="st">"total_transciprts"</span>, </span>
 <span>                    x <span class="op">=</span> <span class="st">"mean_celltype_correlation"</span>, </span>
 <span>                    colour_by <span class="op">=</span> <span class="st">"mean_celltype_correlation"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">1</span>, vjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>    <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">1</span>, vjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CellSPA_files/figure-html/unnamed-chunk-22-1.png" width="700"></p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span></span>
 <span><span class="fu">scater</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/scater/man/plotColData.html" class="external-link">plotColData</a></span><span class="op">(</span><span class="va">spe</span>, <span class="st">"elongation"</span>, </span>
 <span>                    x <span class="op">=</span> <span class="st">"mean_celltype_correlation"</span>, </span>
 <span>                    colour_by <span class="op">=</span> <span class="st">"mean_celltype_correlation"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">1</span>, vjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>    <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">1</span>, vjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CellSPA_files/figure-html/unnamed-chunk-22-2.png" width="700"></p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spe_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>BIDCell <span class="op">=</span> <span class="va">spe</span>,</span>
 <span>                 `10x` <span class="op">=</span> <span class="va">spe_10x</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -1163,7 +1139,7 @@ visualise the baseline metrics.</p>
 <div class="section level2">
 <h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; R version 4.4.1 (2024-06-14)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
@@ -1187,15 +1163,15 @@ visualise the baseline metrics.</p>
 <span><span class="co">#&gt; [8] base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt;  [1] SpatialExperiment_1.14.0    scater_1.32.1              </span></span>
-<span><span class="co">#&gt;  [3] scuttle_1.14.0              SingleCellExperiment_1.26.0</span></span>
-<span><span class="co">#&gt;  [5] SummarizedExperiment_1.34.0 Biobase_2.64.0             </span></span>
-<span><span class="co">#&gt;  [7] GenomicRanges_1.56.1        GenomeInfoDb_1.40.1        </span></span>
-<span><span class="co">#&gt;  [9] IRanges_2.38.1              S4Vectors_0.42.1           </span></span>
-<span><span class="co">#&gt; [11] BiocGenerics_0.50.0         MatrixGenerics_1.16.0      </span></span>
-<span><span class="co">#&gt; [13] matrixStats_1.4.1           ggthemes_5.1.0             </span></span>
-<span><span class="co">#&gt; [15] ggplot2_3.5.1               CellSPA_0.1.0              </span></span>
-<span><span class="co">#&gt; [17] BiocStyle_2.32.1           </span></span>
+<span><span class="co">#&gt;  [1] sf_1.0-17                   SpatialExperiment_1.14.0   </span></span>
+<span><span class="co">#&gt;  [3] scater_1.32.1               scuttle_1.14.0             </span></span>
+<span><span class="co">#&gt;  [5] SingleCellExperiment_1.26.0 SummarizedExperiment_1.34.0</span></span>
+<span><span class="co">#&gt;  [7] Biobase_2.64.0              GenomicRanges_1.56.1       </span></span>
+<span><span class="co">#&gt;  [9] GenomeInfoDb_1.40.1         IRanges_2.38.1             </span></span>
+<span><span class="co">#&gt; [11] S4Vectors_0.42.1            BiocGenerics_0.50.0        </span></span>
+<span><span class="co">#&gt; [13] MatrixGenerics_1.16.0       matrixStats_1.4.1          </span></span>
+<span><span class="co">#&gt; [15] ggthemes_5.1.0              ggplot2_3.5.1              </span></span>
+<span><span class="co">#&gt; [17] CellSPA_0.1.0               BiocStyle_2.32.1           </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
 <span><span class="co">#&gt;   [1] RcppAnnoy_0.0.22          splines_4.4.1            </span></span>
@@ -1206,69 +1182,72 @@ visualise the baseline metrics.</p>
 <span><span class="co">#&gt;  [11] limma_3.60.4              sass_0.4.9               </span></span>
 <span><span class="co">#&gt;  [13] rmarkdown_2.28            jquerylib_0.1.4          </span></span>
 <span><span class="co">#&gt;  [15] yaml_2.3.10               sp_2.1-4                 </span></span>
-<span><span class="co">#&gt;  [17] rgeos_0.6-4               multcomp_1.4-26          </span></span>
+<span><span class="co">#&gt;  [17] DBI_1.2.3                 multcomp_1.4-26          </span></span>
 <span><span class="co">#&gt;  [19] abind_1.4-5               zlibbioc_1.50.0          </span></span>
 <span><span class="co">#&gt;  [21] purrr_1.0.2               R.utils_2.12.3           </span></span>
 <span><span class="co">#&gt;  [23] Metrics_0.1.4             TH.data_1.1-2            </span></span>
 <span><span class="co">#&gt;  [25] sandwich_3.1-0            GenomeInfoDbData_1.2.12  </span></span>
 <span><span class="co">#&gt;  [27] ggrepel_0.9.6             irlba_2.3.5.1            </span></span>
-<span><span class="co">#&gt;  [29] spatstat.utils_3.1-0      spatstat.random_3.3-1    </span></span>
-<span><span class="co">#&gt;  [31] dqrng_0.4.1               pkgdown_2.1.0            </span></span>
-<span><span class="co">#&gt;  [33] DelayedMatrixStats_1.26.0 codetools_0.2-20         </span></span>
-<span><span class="co">#&gt;  [35] DropletUtils_1.24.0       coin_1.4-3               </span></span>
-<span><span class="co">#&gt;  [37] DelayedArray_0.30.1       alphahull_2.5            </span></span>
-<span><span class="co">#&gt;  [39] tidyselect_1.2.1          UCSC.utils_1.0.0         </span></span>
-<span><span class="co">#&gt;  [41] farver_2.1.2              ScaledMatrix_1.12.0      </span></span>
-<span><span class="co">#&gt;  [43] viridis_0.6.5             sgeostat_1.0-27          </span></span>
-<span><span class="co">#&gt;  [45] jsonlite_1.8.8            BiocNeighbors_1.22.0     </span></span>
-<span><span class="co">#&gt;  [47] survival_3.7-0            systemfonts_1.1.0        </span></span>
-<span><span class="co">#&gt;  [49] tools_4.4.1               ragg_1.3.3               </span></span>
-<span><span class="co">#&gt;  [51] Rcpp_1.0.13               glue_1.7.0               </span></span>
-<span><span class="co">#&gt;  [53] shotGroups_0.8.2          gridExtra_2.3            </span></span>
-<span><span class="co">#&gt;  [55] SparseArray_1.4.8         xfun_0.47                </span></span>
-<span><span class="co">#&gt;  [57] dplyr_1.1.4               HDF5Array_1.32.1         </span></span>
-<span><span class="co">#&gt;  [59] withr_3.0.1               BiocManager_1.30.25      </span></span>
-<span><span class="co">#&gt;  [61] fastmap_1.2.0             boot_1.3-31              </span></span>
-<span><span class="co">#&gt;  [63] rhdf5filters_1.16.0       fansi_1.0.6              </span></span>
-<span><span class="co">#&gt;  [65] entropy_1.3.1             digest_0.6.37            </span></span>
-<span><span class="co">#&gt;  [67] rsvd_1.0.5                R6_2.5.1                 </span></span>
-<span><span class="co">#&gt;  [69] textshaping_0.4.0         colorspace_2.1-1         </span></span>
-<span><span class="co">#&gt;  [71] spatstat.data_3.1-2       R.methodsS3_1.8.2        </span></span>
-<span><span class="co">#&gt;  [73] utf8_1.2.4                generics_0.1.3           </span></span>
-<span><span class="co">#&gt;  [75] data.table_1.16.0         FNN_1.1.4                </span></span>
-<span><span class="co">#&gt;  [77] robustbase_0.99-4         httr_1.4.7               </span></span>
-<span><span class="co">#&gt;  [79] htmlwidgets_1.6.4         S4Arrays_1.4.1           </span></span>
-<span><span class="co">#&gt;  [81] uwot_0.2.2                pkgconfig_2.0.3          </span></span>
-<span><span class="co">#&gt;  [83] gtable_0.3.5              modeltools_0.2-23        </span></span>
-<span><span class="co">#&gt;  [85] XVector_0.44.0            htmltools_0.5.8.1        </span></span>
-<span><span class="co">#&gt;  [87] bookdown_0.40             scales_1.3.0             </span></span>
-<span><span class="co">#&gt;  [89] spatstat.univar_3.0-1     splancs_2.01-45          </span></span>
-<span><span class="co">#&gt;  [91] knitr_1.48                rstudioapi_0.16.0        </span></span>
-<span><span class="co">#&gt;  [93] reshape2_1.4.4            rjson_0.2.22             </span></span>
-<span><span class="co">#&gt;  [95] cachem_1.1.0              zoo_1.8-12               </span></span>
-<span><span class="co">#&gt;  [97] rhdf5_2.48.0              stringr_1.5.1            </span></span>
-<span><span class="co">#&gt;  [99] KernSmooth_2.23-24        parallel_4.4.1           </span></span>
-<span><span class="co">#&gt; [101] vipor_0.4.7               libcoin_1.0-10           </span></span>
-<span><span class="co">#&gt; [103] foreign_0.8-87            desc_1.4.3               </span></span>
-<span><span class="co">#&gt; [105] pillar_1.9.0              grid_4.4.1               </span></span>
-<span><span class="co">#&gt; [107] proxyC_0.4.1              vctrs_0.6.5              </span></span>
-<span><span class="co">#&gt; [109] BiocSingular_1.20.0       beachmat_2.20.0          </span></span>
-<span><span class="co">#&gt; [111] beeswarm_0.4.0            evaluate_0.24.0          </span></span>
-<span><span class="co">#&gt; [113] maptools_1.1-8            magick_2.8.4             </span></span>
-<span><span class="co">#&gt; [115] mvtnorm_1.3-1             cli_3.6.3                </span></span>
-<span><span class="co">#&gt; [117] locfit_1.5-9.10           compiler_4.4.1           </span></span>
-<span><span class="co">#&gt; [119] rlang_1.1.4               crayon_1.5.3             </span></span>
-<span><span class="co">#&gt; [121] labeling_0.4.3            interp_1.1-6             </span></span>
-<span><span class="co">#&gt; [123] plyr_1.8.9                fs_1.6.4                 </span></span>
-<span><span class="co">#&gt; [125] ggbeeswarm_0.7.2          stringi_1.8.4            </span></span>
-<span><span class="co">#&gt; [127] viridisLite_0.4.2         deldir_2.0-4             </span></span>
-<span><span class="co">#&gt; [129] BiocParallel_1.38.0       munsell_0.5.1            </span></span>
-<span><span class="co">#&gt; [131] tiff_0.1-12               spatstat.geom_3.3-2      </span></span>
-<span><span class="co">#&gt; [133] CompQuadForm_1.4.3        Matrix_1.7-0             </span></span>
-<span><span class="co">#&gt; [135] sparseMatrixStats_1.16.0  Rhdf5lib_1.26.0          </span></span>
-<span><span class="co">#&gt; [137] statmod_1.5.0             highr_0.11               </span></span>
-<span><span class="co">#&gt; [139] igraph_2.0.3              RcppParallel_5.1.9       </span></span>
-<span><span class="co">#&gt; [141] bslib_0.8.0               DEoptimR_1.1-3</span></span></code></pre></div>
+<span><span class="co">#&gt;  [29] spatstat.utils_3.1-0      terra_1.7-78             </span></span>
+<span><span class="co">#&gt;  [31] units_0.8-5               spatstat.random_3.3-1    </span></span>
+<span><span class="co">#&gt;  [33] dqrng_0.4.1               pkgdown_2.1.0            </span></span>
+<span><span class="co">#&gt;  [35] DelayedMatrixStats_1.26.0 codetools_0.2-20         </span></span>
+<span><span class="co">#&gt;  [37] DropletUtils_1.24.0       coin_1.4-3               </span></span>
+<span><span class="co">#&gt;  [39] DelayedArray_0.30.1       alphahull_2.5            </span></span>
+<span><span class="co">#&gt;  [41] tidyselect_1.2.1          raster_3.6-26            </span></span>
+<span><span class="co">#&gt;  [43] farver_2.1.2              UCSC.utils_1.0.0         </span></span>
+<span><span class="co">#&gt;  [45] ScaledMatrix_1.12.0       viridis_0.6.5            </span></span>
+<span><span class="co">#&gt;  [47] sgeostat_1.0-27           jsonlite_1.8.8           </span></span>
+<span><span class="co">#&gt;  [49] BiocNeighbors_1.22.0      e1071_1.7-16             </span></span>
+<span><span class="co">#&gt;  [51] survival_3.7-0            systemfonts_1.1.0        </span></span>
+<span><span class="co">#&gt;  [53] tools_4.4.1               ragg_1.3.3               </span></span>
+<span><span class="co">#&gt;  [55] Rcpp_1.0.13               glue_1.7.0               </span></span>
+<span><span class="co">#&gt;  [57] shotGroups_0.8.2          gridExtra_2.3            </span></span>
+<span><span class="co">#&gt;  [59] SparseArray_1.4.8         xfun_0.47                </span></span>
+<span><span class="co">#&gt;  [61] dplyr_1.1.4               HDF5Array_1.32.1         </span></span>
+<span><span class="co">#&gt;  [63] withr_3.0.1               BiocManager_1.30.25      </span></span>
+<span><span class="co">#&gt;  [65] fastmap_1.2.0             boot_1.3-31              </span></span>
+<span><span class="co">#&gt;  [67] rhdf5filters_1.16.0       fansi_1.0.6              </span></span>
+<span><span class="co">#&gt;  [69] entropy_1.3.1             digest_0.6.37            </span></span>
+<span><span class="co">#&gt;  [71] rsvd_1.0.5                R6_2.5.1                 </span></span>
+<span><span class="co">#&gt;  [73] textshaping_0.4.0         colorspace_2.1-1         </span></span>
+<span><span class="co">#&gt;  [75] spatstat.data_3.1-2       R.methodsS3_1.8.2        </span></span>
+<span><span class="co">#&gt;  [77] utf8_1.2.4                generics_0.1.3           </span></span>
+<span><span class="co">#&gt;  [79] data.table_1.16.0         FNN_1.1.4                </span></span>
+<span><span class="co">#&gt;  [81] class_7.3-22              robustbase_0.99-4        </span></span>
+<span><span class="co">#&gt;  [83] httr_1.4.7                htmlwidgets_1.6.4        </span></span>
+<span><span class="co">#&gt;  [85] S4Arrays_1.4.1            uwot_0.2.2               </span></span>
+<span><span class="co">#&gt;  [87] pkgconfig_2.0.3           gtable_0.3.5             </span></span>
+<span><span class="co">#&gt;  [89] modeltools_0.2-23         XVector_0.44.0           </span></span>
+<span><span class="co">#&gt;  [91] htmltools_0.5.8.1         bookdown_0.40            </span></span>
+<span><span class="co">#&gt;  [93] scales_1.3.0              spatstat.univar_3.0-1    </span></span>
+<span><span class="co">#&gt;  [95] splancs_2.01-45           knitr_1.48               </span></span>
+<span><span class="co">#&gt;  [97] rstudioapi_0.16.0         reshape2_1.4.4           </span></span>
+<span><span class="co">#&gt;  [99] rjson_0.2.22              proxy_0.4-27             </span></span>
+<span><span class="co">#&gt; [101] cachem_1.1.0              zoo_1.8-12               </span></span>
+<span><span class="co">#&gt; [103] rhdf5_2.48.0              stringr_1.5.1            </span></span>
+<span><span class="co">#&gt; [105] KernSmooth_2.23-24        parallel_4.4.1           </span></span>
+<span><span class="co">#&gt; [107] vipor_0.4.7               libcoin_1.0-10           </span></span>
+<span><span class="co">#&gt; [109] desc_1.4.3                pillar_1.9.0             </span></span>
+<span><span class="co">#&gt; [111] grid_4.4.1                proxyC_0.4.1             </span></span>
+<span><span class="co">#&gt; [113] vctrs_0.6.5               BiocSingular_1.20.0      </span></span>
+<span><span class="co">#&gt; [115] beachmat_2.20.0           beeswarm_0.4.0           </span></span>
+<span><span class="co">#&gt; [117] evaluate_0.24.0           magick_2.8.4             </span></span>
+<span><span class="co">#&gt; [119] mvtnorm_1.3-1             cli_3.6.3                </span></span>
+<span><span class="co">#&gt; [121] locfit_1.5-9.10           compiler_4.4.1           </span></span>
+<span><span class="co">#&gt; [123] rlang_1.1.4               crayon_1.5.3             </span></span>
+<span><span class="co">#&gt; [125] labeling_0.4.3            interp_1.1-6             </span></span>
+<span><span class="co">#&gt; [127] classInt_0.4-10           plyr_1.8.9               </span></span>
+<span><span class="co">#&gt; [129] fs_1.6.4                  ggbeeswarm_0.7.2         </span></span>
+<span><span class="co">#&gt; [131] stringi_1.8.4             viridisLite_0.4.2        </span></span>
+<span><span class="co">#&gt; [133] deldir_2.0-4              BiocParallel_1.38.0      </span></span>
+<span><span class="co">#&gt; [135] munsell_0.5.1             tiff_0.1-12              </span></span>
+<span><span class="co">#&gt; [137] spatstat.geom_3.3-2       CompQuadForm_1.4.3       </span></span>
+<span><span class="co">#&gt; [139] Matrix_1.7-0              sparseMatrixStats_1.16.0 </span></span>
+<span><span class="co">#&gt; [141] Rhdf5lib_1.26.0           statmod_1.5.0            </span></span>
+<span><span class="co">#&gt; [143] highr_0.11                igraph_2.0.3             </span></span>
+<span><span class="co">#&gt; [145] RcppParallel_5.1.9        bslib_0.8.0              </span></span>
+<span><span class="co">#&gt; [147] lwgeom_0.2-14             DEoptimR_1.1-3</span></span></code></pre></div>
 </div>
   </div>
 

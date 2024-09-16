@@ -35,10 +35,6 @@ library(ggthemes)
 library(scater)
 library(SingleCellExperiment)
 library(SpatialExperiment)
-#Why do I need to call these in the rmd,the dependent functions fail if I dont..?
-library(sf)
-library(spatstat)
-library(lwgeom)
 theme_set(theme_bw())
 ```
 
@@ -46,14 +42,9 @@ theme_set(theme_bw())
 # Read BIDCell output
 
 ```{r, cache=TRUE}
-#source("C:\\Users\\dmech\\OneDrive - The University of Sydney (Students)\\PhD\\Metrics\\CellSPA\\R\\cellshape_metrics.R")
-# data_dir <- system.file("extdata/BIDCell_cells_breast1/", package = "CellSPA")
-# tiff_path <- system.file("extdata/BIDCell_cells_breast1.tif", package = "CellSPA")
-data_dir <- "data/BIDCell_cells_breast1"
-tiff_path <- "data/BidCell_cells_breast1.tif"
-spe <- readBIDCell(data_dir,
-                   tiff_path = tiff_path,
-                   method_name = "BIDCell")
+data_dir <- system.file("extdata/BIDCell_csv_output", package = "CellSPA")
+data_dir
+tiff_path <- system.file("extdata/BIDCell_output_subset.tif", package = "CellSPA")
 ```
 
 
@@ -67,7 +58,7 @@ spe <- processingSPE(spe,
 
 ```{r}
 #subset a set of cells for illustration
-spe <- CellSPA::subset(spe, 1:50)
+spe <- CellSPA::subset(spe, 1:500)
 
 ```
 
