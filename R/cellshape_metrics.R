@@ -81,11 +81,6 @@ chull_to_poly2 <- function(coord){
 
     return(sp_poly)
 }
-
-
-
-
-
 # for functions requiring the bounding box we just need lines rather than sp_polygon,
 # you can also get the bounding box from polygon but this is more computationally expensive
 get_ashape_lines <- function(coord){
@@ -103,45 +98,23 @@ get_ashape_lines <- function(coord){
     }
 }
 
-#
-# ashape_to_poly <- function(x,y){
-#     points <- cbind(x,y)
-#
-#     for (alpha_var in 1:100){
-#         alpha_shape <- alphahull::ashape(points, alpha = alpha_var)
-#         pth <- tryCatch(ashape2poly(alpha_shape),error=function(e) e)
-#
-#         if ( !inherits(pth, "error")){
-#
-#             hull_points <-  points[pth,]
-#             poly <- sp::Polygon(hull_points)
-#             poly_list <- list(poly)
-#
-#             # Create spatial polygon object
-#             sp_poly <- sp::SpatialPolygons(list(sp::Polygons(poly_list, ID = 1)))
-#
-#
-#             return(sp_poly)
-#         }
-#     }
-# }
-#
+
 
 get_ashape_chull_poly <- function(x) {
 
-    polygon <- try(ashape_to_poly2(x), silent = TRUE)
-    if (methods::is(polygon, "try-error")) {
-        polygon <- list(NA, NA)
+    poly_res <- try(ashape_to_poly2(x), silent = TRUE)
+    if (methods::is(poly_res, "try-error")) {
+        poly_res <- list(NA, NA)
     }
 
-    ch_polygon <- try(chull_to_poly2(x), silent = TRUE)
-    if (methods::is(ch_polygon, "try-error")) {
-        ch_polygon <- NA
+    ch_poly_res <- try(chull_to_poly2(x), silent = TRUE)
+    if (methods::is(ch_poly_res, "try-error")) {
+        ch_poly_res <- NA
     }
 
-    return(list(ashape_poly = polygon[[1]],
-                chull_poly = ch_polygon,
-                ashape_alpha = polygon[[2]]))
+    return(list(ashape_poly = poly_res[[1]],
+                chull_poly = ch_poly_res,
+                ashape_alpha = poly_res[[2]]))
 }
 
 elongation <- function(x) {
@@ -164,34 +137,26 @@ elongation <- function(x) {
 
 }
 
-
 eccentricity <- function(x){
 
 
 
     if (methods::is(x, "matrix") | methods::is(x, "data.frame")) {
         # Calculate the alpha shape
-        lines <- get_ashape_lines(x)
+        sp_poly <- ashape_to_poly2(x)[[1]]
+        sf_poly <- sf::st_as_sf(sp_poly)
     }
 
     if (methods::is(x, "SpatialPolygons")) {
-        lines <- x@polygons[[1]]@Polygons[[1]]@coords
+        sf_poly <- sf::st_as_sf(x)
     }
 
+    major_axis <- find_major_axis(sf_poly)
+    minor_axis <- find_minor_axis(sf_poly,major_axis$major_axis_endpoints)
 
-    #nice function to extract bbox that is not a flat square
-    bb <- shotGroups::getMinBBox(lines)
-
-
-    #this is super similar to elongation but basically we take the max and min, for many cells we get the same result as elongation
-    major_axis <- max(bb$height, bb$width)
-    minor_axis <- min(bb$height, bb$width)
-
-    return(minor_axis/major_axis)
+    return(as.numeric(minor_axis$minor_axis_length/major_axis$major_axis_length))
 
 }
-
-
 
 sphericity <- function(x){
 
@@ -204,40 +169,33 @@ sphericity <- function(x){
         res <- x
     }
 
-
-    #spatstat needs a different type of spatial object
-    pol <- maptools::as.owin.SpatialPolygons(res)
-    #if (is(pol, "try-error")) { return(NULL) }
+    bbox <- res@bbox
+    pol <- spatstat.geom::owin(xrange = c(bbox["x", "min"], bbox["x", "max"]), yrange = c(bbox["y", "min"], bbox["y", "max"]))
     #calculate outer circle
     outer_radius <- spatstat.geom::boundingradius(pol)[[1]]
     #get inner circle
     inner_radius <- spatstat.geom::incircle(pol)
+
     #perform calculation of radius of inner circle divided by radius of outer circle
     return(inner_radius$r/outer_radius)
 }
 
-
-solidity <- function(x, chull_polygon = NULL){
-
+solidity <- function(x, chull_polygon = NULL) {
     if (methods::is(x, "matrix") | methods::is(x, "data.frame")) {
-        polygon <- ashape_to_poly2(x)[[1]]
+        poly_res <- ashape_to_poly2(x)[[1]]
         ch_polygon <- chull_to_poly2(x)
     }
 
     if (methods::is(x, "SpatialPolygons") & methods::is(chull_polygon, "SpatialPolygons")) {
-        polygon <- x
+        poly_res <- x
         ch_polygon <- chull_polygon
     }
 
+    area_p <- as.numeric(raster::area(poly_res))
+    ch_area <- as.numeric(raster::area(ch_polygon))
 
-    area <- as.numeric(rgeos::gArea(polygon))
-
-    ch_area <- as.numeric(rgeos::gArea(ch_polygon))
-
-    return(area/ch_area)
-
+    return(area_p / ch_area)
 }
-
 
 convexity <- function(x, chull_polygon = NULL){
 
@@ -255,15 +213,14 @@ convexity <- function(x, chull_polygon = NULL){
 
 
     # Calculate area of polygon object
-    perimeter <- as.numeric(rgeos::gLength(polygon))
+    perimeter <- as.numeric(lwgeom::st_perimeter_2d(sf::st_as_sf(polygon)))
 
     # Calculate perimeter of convex hull object
-    ch_perimeter <- as.numeric(rgeos::gLength(ch_polygon))
+    ch_perimeter <- as.numeric(lwgeom::st_perimeter_2d(sf::st_as_sf(ch_polygon)))
 
     return(ch_perimeter/perimeter)
 
 }
-
 
 circularity <- function(x, chull_polygon = NULL){
     #This one kinda sucks for us because we dont really have a ground truth polygon, its basically just alpha convex hull(tighter polygon)
@@ -282,40 +239,132 @@ circularity <- function(x, chull_polygon = NULL){
 
 
     # Calculate area of polygon object
-    area <- as.numeric(rgeos::gArea(polygon))
+    area <- as.numeric(raster::area(polygon))
 
     # Calculate perimeter of convex hull object
-    convex_perimeter <- as.numeric(rgeos::gLength(ch_polygon))
+    ch_perimeter <- as.numeric(lwgeom::st_perimeter_2d(sf::st_as_sf(ch_polygon)))
 
     #circularity calculation
-    return((4*pi*area)/ ((convex_perimeter)^2))
+    return((4*pi*area)/ ((ch_perimeter)^2))
 
 }
-
-
 
 compactness <- function(x) {
 
     if (methods::is(x, "matrix") | methods::is(x, "data.frame")) {
         # Calculate the alpha shape
-        polygon <- ashape_to_poly2(x)[[1]]
+        poly_res <- ashape_to_poly2(x)[[1]]
     }
 
     if (methods::is(x, "SpatialPolygons")) {
-        polygon <- x
+        poly_res <- x
     }
 
     # Calculate area of polygon object
-    area <- as.numeric(rgeos::gArea(polygon))
+    area <- as.numeric(raster::area(poly_res))
 
-    # Calculate perimeter of convex hull object
-    perimeter <- as.numeric(rgeos::gLength(polygon))
+    # Calculate perimeter of hull object
+    perimeter <- as.numeric(lwgeom::st_perimeter_2d(sf::st_as_sf(poly_res)))
 
-    #Compactness calculation
+
     return((4*pi*area)/ ((perimeter)^2))
 }
 
+# support functions for eccentricity to find major and minor axis, this function essentially breaks a line into #num samples number of points to find the longest line through the polygon that is within the polygon
+# the more samples the more accurate but also computational expensive, angle threshhold allows for slight leeway in minor not being perfectly perpendicular to major, again a computationally expensive trade off for better accuracy
+find_major_axis <- function(poly_res, num_samples = 25) {
 
+    #we get the boundary poly_res and then create lots of samples along its perimeter
+    boundary <- sf::st_boundary(poly_res)
+    boundary_length <- sf::st_length(boundary)[[1]]
+    segment_length <- boundary_length / num_samples
+    boundary_points <- sf::st_coordinates(sf::st_segmentize(boundary, segment_length))
+
+    max_distance <- -Inf
+    max_indices <- c(0, 0)
+    num_boundary_points <- nrow(boundary_points)
+    #loop through sampled x,y boundary points to find lines, keep biggest
+    for (i in 1:(num_boundary_points - 1)) {
+        for (j in (i + 1):num_boundary_points) {
+            line_segment <- sf::st_linestring(matrix(c(boundary_points[i,], boundary_points[j,]), nrow = 2, byrow = TRUE))
+            contains_result <- sf::st_contains(poly_res, sf::st_sfc(line_segment))
+
+            if (length(contains_result[[1]]) > 0) {  # line segment is contained inside the poly_res or part of its perimeter
+                current_distance <- sqrt((boundary_points[i, 1] - boundary_points[j, 1])^2 +
+                                             (boundary_points[i, 2] - boundary_points[j, 2])^2)
+
+                if (current_distance > max_distance) {
+                    max_distance <- current_distance
+                    max_indices <- c(i, j)
+                }
+            }
+        }
+    }
+
+    major_axis_endpoints <- boundary_points[max_indices, ]
+    major_axis_length <- max_distance
+    #here we return the endpoints and length, ultimately eccentricity just is minor axis/major axis but this way we can do plots
+    result <- list(
+        major_axis_endpoints = major_axis_endpoints,
+        major_axis_length = major_axis_length
+    )
+
+    return(result)
+}
+find_minor_axis <- function(poly_res, major_axis_endpoints, num_samples = 25, angle_threshold = 2) {
+    boundary <- sf::st_boundary(poly_res)
+    boundary_length <- sf::st_length(boundary)[[1]]
+    segment_length <- boundary_length / num_samples
+    boundary_points <- sf::st_coordinates(sf::st_segmentize(boundary, segment_length))
+
+    major_axis_vector <- major_axis_endpoints[2,] - major_axis_endpoints[1,]
+    major_axis_angle <- atan2(major_axis_vector[2], major_axis_vector[1])
+    major_axis_line <- sf::st_linestring(major_axis_endpoints)
+
+    max_distance <- -Inf
+    max_indices <- c(0, 0)
+    num_boundary_points <- nrow(boundary_points)
+
+    for (i in 1:(num_boundary_points - 1)) {
+        for (j in (i + 1):num_boundary_points) {
+            line_segment <- sf::st_linestring(matrix(c(boundary_points[i,], boundary_points[j,]), nrow = 2, byrow = TRUE))
+            contains_result <- sf::st_contains(poly_res, sf::st_sfc(line_segment))
+
+            if (length(contains_result[[1]]) > 0) {  # line segment is contained inside the poly_res or part of its perimeter
+                # Check if the line segment intersects the major axis
+                intersects_result <- sf::st_intersects(major_axis_line, sf::st_sfc(line_segment))
+
+                if (length(intersects_result[[1]]) > 0) {
+                    line_segment_vector <- boundary_points[j,] - boundary_points[i,]
+                    line_segment_angle <- atan2(line_segment_vector[2], line_segment_vector[1])
+
+                    angle_difference <- abs(major_axis_angle - line_segment_angle) * (180 / pi)
+                    angle_difference <- min(angle_difference, 360 - angle_difference)
+
+                    if (angle_difference >= (90 - angle_threshold) && angle_difference <= (90 + angle_threshold)) {
+                        current_distance <- sqrt((boundary_points[i, 1] - boundary_points[j, 1])^2 +
+                                                     (boundary_points[i, 2] - boundary_points[j, 2])^2)
+
+                        if (current_distance > max_distance) {
+                            max_distance <- current_distance
+                            max_indices <- c(i, j)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    minor_axis_endpoints <- boundary_points[max_indices, ]
+    minor_axis_length <- max_distance
+
+    result <- list(
+        minor_axis_endpoints = minor_axis_endpoints,
+        minor_axis_length = minor_axis_length
+    )
+
+    return(result)
+}
 
 
 cell_shape_fn <- function(x, method) {
