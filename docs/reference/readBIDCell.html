@@ -47,7 +47,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">readBIDCell</span><span class="op">(</span><span class="va">data_dir</span>, meta_idx <span class="op">=</span> <span class="cn">NULL</span>, tiff_path <span class="op">=</span> <span class="cn">NULL</span>, method_name <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">readBIDCell</span><span class="op">(</span></span>
+<span>  <span class="va">data_dir</span>,</span>
+<span>  meta_idx <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  tiff_path <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  method_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  spatialCoordsNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cell_centroid_x"</span>, <span class="st">"cell_centroid_y"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -70,6 +76,10 @@ corresponding to the meta data in the output files.</p></dd>
 
 <dt id="arg-method-name">method_name<a class="anchor" aria-label="anchor" href="#arg-method-name"></a></dt>
 <dd><p>a character specifying the name of the method.</p></dd>
+
+
+<dt id="arg-spatialcoordsnames">spatialCoordsNames<a class="anchor" aria-label="anchor" href="#arg-spatialcoordsnames"></a></dt>
+<dd><p>a vector of two characters indicate the name of the spatial coordinates for each cell.</p></dd>
 
 </dl></div>
     <div id="value">

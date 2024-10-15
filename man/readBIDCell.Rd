@@ -4,7 +4,13 @@
 \alias{readBIDCell}
 \title{Read BIDCell output}
 \usage{
-readBIDCell(data_dir, meta_idx = NULL, tiff_path = NULL, method_name = NULL)
+readBIDCell(
+  data_dir,
+  meta_idx = NULL,
+  tiff_path = NULL,
+  method_name = NULL,
+  spatialCoordsNames = c("cell_centroid_x", "cell_centroid_y")
+)
 }
 \arguments{
 \item{data_dir}{a character specifying a single output directory as
@@ -16,6 +22,8 @@ corresponding to the meta data in the output files.}
 \item{tiff_path}{a character specifying the path of a tiff file output from BIDCell.}
 
 \item{method_name}{a character specifying the name of the method.}
+
+\item{spatialCoordsNames}{a vector of two characters indicate the name of the spatial coordinates for each cell.}
 }
 \value{
 A SpatialExperiment object

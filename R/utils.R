@@ -45,6 +45,7 @@ subset <- function(spe, col_idx) {
 
 # From Matrix.utils::aggregate.Matrix() function, which has been archived on CRAN
 
+#' @export
 aggregate.Matrix <- function(x, groupings = NULL, form = NULL, fun = 'sum', ...) {
     if (!methods::is(x,'Matrix')) {
         x <- Matrix::Matrix(as.matrix(x), sparse = TRUE)

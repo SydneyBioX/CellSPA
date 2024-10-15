@@ -41,7 +41,8 @@ processingSPE <- function(spe,
     spe <- scater::runUMAP(spe,
                            dimred = "PCA",
                            min_dist = 0.3,
-                           verbose = verbose)
+                           verbose = verbose,
+                           n_neighbors = min(ncol(spe), 15))
     return(spe)
 }
 

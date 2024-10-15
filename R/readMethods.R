@@ -90,6 +90,7 @@ readXenium <- function(data_dir,
 #' corresponding to the meta data in the output files.
 #' @param tiff_path a character specifying the path of a tiff file output from BIDCell.
 #' @param method_name a character specifying the name of the method.
+#' @param spatialCoordsNames a vector of two characters indicate the name of the spatial coordinates for each cell.
 #'
 #' @import SpatialExperiment
 #' @importFrom methods as
@@ -109,9 +110,11 @@ readXenium <- function(data_dir,
 readBIDCell <- function(data_dir,
                         meta_idx = NULL,
                         tiff_path = NULL,
-                        method_name = NULL) {
+                        method_name = NULL,
+                        spatialCoordsNames = c("cell_centroid_x",
+                                               "cell_centroid_y")) {
 
-    all_files <- list.files(data_dir)
+    all_files <- list.files(data_dir, pattern = "csv")
 
     cell_outputs <- lapply(1:length(all_files), function(i) {
         res <- read.csv(file.path(data_dir, all_files[i]))
@@ -155,11 +158,9 @@ readBIDCell <- function(data_dir,
     data <- as(as.matrix(data), "CsparseMatrix")
 
 
-
     spe <- SpatialExperiment(assay = list(counts = Matrix::t(data)),
                              colData = data.frame(meta),
-                             spatialCoordsNames = c("cell_centroid_x",
-                                                    "cell_centroid_y"))
+                             spatialCoordsNames = spatialCoordsNames)
 
     spe <- .initialise_CellSPA_list(spe)
     spe <- .add_dataset_metrics(spe)

@@ -8,27 +8,28 @@ output:
     toc_float: true
 package: BiocStyle
 vignette: >
-  %\VignetteIndexEntry{CellSPA}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+    %\VignetteIndexEntry{CellSPA}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
 ---
+  
 
 
 ```{r global-options, include=FALSE}
-knitr::opts_chunk$set(
-    message=FALSE,
-    warning=FALSE,
-    collapse=TRUE,
-    comment="#>"
-)
-library(BiocStyle)
+  knitr::opts_chunk$set(
+  message=FALSE,
+  warning=FALSE,
+  collapse=TRUE,
+  comment="#>"
+  )
+  library(BiocStyle)
 ```
-
-
-
-
+  
+  
+  
+  
 ```{r, include=FALSE}
-
+  
 library(CellSPA)
 library(ggplot2)
 library(ggthemes)
@@ -41,14 +42,19 @@ theme_set(theme_bw())
 
 # Read BIDCell output
 
-```{r, cache=TRUE}
+```{r cache = TRUE}
 data_dir <- system.file("extdata/BIDCell_csv_output", package = "CellSPA")
 data_dir
 tiff_path <- system.file("extdata/BIDCell_output_subset.tif", package = "CellSPA")
+spe <- readBIDCell(data_dir,
+                   tiff_path = tiff_path,
+                   method_name = "BIDCell",
+                   spatialCoordsNames = c("cell_centroid_x",
+                                          "cell_centroid_y"))
 ```
 
 
-```{r, cache=TRUE}
+```{r cache = TRUE}
 spe <- processingSPE(spe,
                      qc_range = list(total_transciprts = c(20, 2000),
                                      total_genes = c(20, Inf)))
@@ -82,7 +88,7 @@ head(colData(spe))
 
 ```{r}
 sce_ref_full <- readRDS(system.file("extdata/sce_FFPE_full.rds", 
-                            package = "CellSPA"))
+                                    package = "CellSPA"))
 sce_ref <- processingRef(sce_ref_full, 
                          celltype = sce_ref_full$graph_cluster_anno, 
                          subset_row = rownames(spe))
