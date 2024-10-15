@@ -239,7 +239,7 @@ calExpressionCorrelation <- function(spe,
     RcppParallel::setThreadOptions(1)
     cor_mat <- proxyC::simil(t(ref_exprs),
                              t(spe_exprs),
-                             method = method)
+                             method = method, use_nan = TRUE)
     celltype <- ref_celltype[apply(cor_mat, 2, which.max)]
     cor_res <- apply(cor_mat, 2, max)
     res <- data.frame(cor = cor_res, celltype = celltype)
@@ -317,7 +317,7 @@ calAggExpressionCorrelation <- function(spe,
     for (i in method) {
         res <- proxyC::simil(as(t(ref_exprs), "CsparseMatrix"),
                              as(t(spe_agg_exprs), "CsparseMatrix"),
-                             method = i)
+                             method = i, use_nan = TRUE)
 
         metrics_name <- paste('agg', ref_exprs_values, i, sep = "_")
         spe@metadata$CellSPA$similarity_metrics[[metrics_name]] <- as.matrix(res)
